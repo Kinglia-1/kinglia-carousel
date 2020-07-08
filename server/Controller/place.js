@@ -9,5 +9,13 @@ module.exports = {
     .catch((e) =>{
       console.log("error in get request: "+ err)
     })
+  },
+  delete: (req, res) => {
+    Place.findByIdAndRemove(req.params.placeId)
+    .then(() => res.sendStatus(200))
+    .catch((e) => {
+      console.log(e);
+      res.sendStatus(404);
+    });
   }
 }
