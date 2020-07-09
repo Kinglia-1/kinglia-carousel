@@ -21,11 +21,12 @@ app.use(cors());
 
 //Places API Calls:
 app.get('/api/places', PlaceController.get);
+app.delete('/api/places/:placeId', PlaceController.delete);
 
 //User - API Calls:
 app.get('/api/users', UserController.get);
 app.post('/api/users', UserController.post);
-app.patch('/api/users/:placeId', UserController.update)
+app.patch('/api/users/:placeId', UserController.update);
 
 
 app.listen(port, () => console.log(`Example app listening at port:${port}`))
