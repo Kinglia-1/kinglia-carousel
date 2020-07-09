@@ -4,10 +4,11 @@ module.exports = {
   get: (req,res) =>{
     User.find()
       .then((data) => {
-        res.send(data);
+        res.status(200).send(data);
       })
       .catch((e) =>{
-        console.log("error in get request: "+ err)
+        console.log("error in get request: "+ err);
+        res.status(400);
       })
   },
   post: (req,res) =>{
@@ -22,7 +23,7 @@ module.exports = {
       { $push: {"likeplace": newlikeplace}}
     )
     .then(() => res.sendStatus(202))
-    .catch((e)=> res.sendStatus(404))
+    .catch((e)=> res.sendStatus(400))
   },
   update: (req,res) => {
     User.update(
@@ -32,7 +33,7 @@ module.exports = {
     .then(() => res.sendStatus(202))
     .catch((e)=> {
       console.log(e);
-      res.sendStatus(404)
+      res.sendStatus(400)
     })
   }
 
