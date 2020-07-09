@@ -4,10 +4,11 @@ module.exports = {
   get: (req,res)=>{
   Place.find()
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((e) =>{
-      console.log("error in get request: "+ err)
+      console.log("error in get request: "+ err);
+      res.status(400);
     })
   },
   delete: (req, res) => {
@@ -15,7 +16,7 @@ module.exports = {
     .then(() => res.sendStatus(200))
     .catch((e) => {
       console.log(e);
-      res.sendStatus(404);
+      res.sendStatus(400);
     });
   }
 }
