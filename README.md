@@ -2,121 +2,126 @@
 
 ## Table of Contents
 
-1. [GET User List](#get-user-list)
-1. [POST User Liked Place](#post-user-liked-place)
-1. [Patch User Liked Place](#patch-user-liked-place)
-1. [Get Place List](#get-place-list)
-1. [Delete Place](#delete-place)
+1. [GET List of Nearby Places](#get-list-of-nearby-places)
+1. [GET User Lists](#get-user-lists)
+1. [POST Liked Places List](#post-liked-places-list)
+1. [PATCH Liked Places List](#patch-liked-places-list)
+1. [DELETE Liked Place from List](#delete-liked-place-from-list)
 
-## GET User List
+## GET List of Nearby Places
 
-Endpoint:
-```
-/api/users
-```
+* **Endpoint:** `api/places`
 
-Success Status Code: 200
+* **Success Status Code:** `200`
 
-Failure Status Code: 400
+* **Failure Status Code:** `400`
 
-Returns:
-> Returns JSON Object as per below
+* **Request Body:** JSON Object
 ```
   {
-    name: String,
-    likeplace: [
-      {
-        name: String,
-        list: String,
-        like: Boolean
-      }
-    ]
+    "zipCode": "Number"
   }
 ```
 
-
-## POST User Liked Place
-
-Endpoint:
+* **Returns:** JSON Object
 ```
-/api/users
+  [
+    {
+      "placeId": "Number",
+      "title": "String",
+      "pictureUrl": "String",
+      "zipCode": "Number",
+      "roomType": "String",
+      "numberBeds": "Number",
+      "rating": "Number",
+      "totalReview": "Number",
+      "hostPlus": "Boolean",
+      "superHost": "Boolean",
+      "price": "Number",
+      "placeUrl": "String"
+    },
+    ...
+  ]
 ```
 
-Success Status Code: 202
+## GET User Lists
 
-Failure Status Code: 400
+* **Endpoint:** `api/users/:userId`
 
-Request Body:
-> Expects JSON Object as per below
+* **Path Parameter(s):** `userId`
 
+* **Success Status Code:** `200`
+
+* **Failure Status Code:** `400`
+
+* **Returns:** JSON Object
+```
+  [
+    {
+      "listId": "Number",
+      "listName": "String",
+      "places": [
+        {
+          "placeId": "Number"
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+```
+
+## POST Liked Places List
+
+* **Endpoint:** `api/users/:userId`
+
+* **Path Parameter(s):** `userId`
+
+* **Success Status Code:** `201`
+
+* **Failure Status Code:** `400`
+
+* **Request Body:** JSON Object
 ```
   {
-    _id: String,
-    likeplace: String,
-    list: String,
-    like: Boolean
+    "userId": "Number",
+    "listName": "String",
+    "placeId": "Number"
   }
 ```
 
-## PATCH User Liked Place
+## PATCH Liked Places List
 
-Endpoint:
-```
-/api/users/:placeId
-```
+* **Endpoint:** `api/users/:userId`
 
-Path Parameters: `placeId` placeId
+* **Path Parameter(s):** `userId`
 
-Success Status Code: 202
+* **Success Status Code:** `204`
 
-Failure Status Code: 400
+* **Failure Status Code:** `400`
 
-Request Body:
-> Expects JSON Object as per below
-
+* **Request Body:** JSON Object
 ```
   {
-    like: Boolean
+    "listId": "Number",
+    "placeId": "Number"
   }
 ```
 
-## GET Place List
+## DELETE Liked Place from List
 
-Endpoint:
-```
-/api/places
-```
+* **Endpoint:** `api/users/:userId`
 
-Success Status Code: 200
+* **Path Parameter(s):** `userId`
 
-Failure Status Code: 400
+* **Success Status Code:** `204`
 
-Returns:
-> Returns JSON Object as per below
+* **Failure Status Code:** `400`
+
+* **Request Body:** JSON Object
 ```
   {
-    picture: String,
-    type: String,
-    bed: String,
-    rating: Number,
-    totalReview: Number,
-    hostplus: Boolean,
-    superhost: Boolean,
-    title: String,
-    price: Number,
-    src: String
+    "listId": "Number",
+    "placeId": "Number"
   }
 ```
-
-## DELETE Place
-
-Endpoint:
-```
-/api/places/:placeId
-```
-
-Path Parameters: `placeId` placeId
-
-Success Status Code: 200
-
-Failure Status Code: 400
