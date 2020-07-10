@@ -1,4 +1,4 @@
--- sign in and run this script
+-- sign in and run script
 
 CREATE DATABASE kinglia;
 
