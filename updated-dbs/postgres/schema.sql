@@ -21,20 +21,16 @@ CREATE SCHEMA carousel;
 
   CREATE TABLE users (
     userId serial PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    user_created_at TIMESTAMP default CURRENT_TIMESTAMP
   );
 
   CREATE TABLE user_lists (
     listId serial PRIMARY KEY,
     listName VARCHAR(50) NOT NULL,
-    list_created_at TIMESTAMP default CURRENT_TIMESTAMP
     userId INTEGER NOT NULL REFERENCES users ON DELETE CASCADE
   );
 
   CREATE TABLE list_likes (
     likeId serial PRIMARY KEY,
     listId INTEGER NOT NULL REFERENCES user_lists ON DELETE CASCADE,
-    placeId INTEGER NOT NULL REFERENCES places ON DELETE CASCADE,
-    like_created_at TIMESTAMP default CURRENT_TIMESTAMP
+    placeId INTEGER NOT NULL REFERENCES places ON DELETE CASCADE
   );
