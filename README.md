@@ -34,7 +34,7 @@
       "roomType": "String",
       "numberBeds": "Number",
       "rating": "Number",
-      "totalReview": "Number",
+      "numberReviews": "Number",
       "hostPlus": "Boolean",
       "superHost": "Boolean",
       "price": "Number",
