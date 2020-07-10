@@ -13,11 +13,11 @@ CREATE SCHEMA carousel;
     zipCode VARCHAR(10) NOT NULL,
     roomType VARCHAR(50) NOT NULL,
     numberBeds SMALLINT NOT NULL,
-    rating numeric(1,2) NOT NULL,
+    rating numeric(3,2) NOT NULL,
     numberReviews INTEGER NOT NULL,
     hostPlus BOOLEAN NOT NULL,
     superHost BOOLEAN NOT NULL,
-    price numeric(1,2) NOT NULL,
+    price numeric(3,2) NOT NULL,
     placeUrl VARCHAR(2083) NOT NULL
   );
 
