@@ -29,5 +29,5 @@ create table likes (
   listName varchar,
   placeId uuid,
   userId uuid,
-  PRIMARY KEY (listId,likeId)
+  PRIMARY KEY (listId, likeId)
 );
