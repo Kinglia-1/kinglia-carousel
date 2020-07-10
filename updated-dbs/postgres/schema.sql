@@ -1,3 +1,5 @@
+-- sign in and run this script
+
 CREATE DATABASE kinglia;
 
 DROP SCHEMA IF EXISTS carousel CASCADE;
@@ -20,7 +22,7 @@ CREATE SCHEMA carousel;
   );
 
   CREATE TABLE users (
-    userId serial PRIMARY KEY,
+    userId serial PRIMARY KEY
   );
 
   CREATE TABLE user_lists (
