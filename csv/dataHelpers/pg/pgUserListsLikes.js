@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const csvWriter = require('csv-write-stream');
-const writer = csvWriter();
 const faker = require('faker');
 
 var generateListName = () => {
@@ -10,8 +9,9 @@ var generateListName = () => {
 }
 
 const dataGen = (fileName, counterStart) => {
+  const writer = csvWriter();
   var counter = counterStart;
-  writer.pipe(fs.createWriteStream(path.join(__dirname, 'pg', `${fileName}`)));
+  writer.pipe(fs.createWriteStream(path.join(__dirname, '..', '..', 'data', 'pg', 'userLikes', `${fileName}`)));
   for (var i = 0; i < 10; i++) {
     writer.write({
       likeId: counter++,
@@ -23,4 +23,10 @@ const dataGen = (fileName, counterStart) => {
   console.log('done');
 };
 
-dataGen('pgUserListsData1.csv', 1);
+var generateFiles = () => {
+  dataGen('pgUserListsData1.csv', 1);
+  dataGen('pgUserListsData2.csv', 11);
+  dataGen('pgUserListsData3.csv', 21);
+}
+
+module.exports.generateFiles = generateFiles;

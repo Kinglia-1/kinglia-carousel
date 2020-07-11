@@ -1,3 +1,2 @@
 node_modules
-/csv/pg
-/csv/cassandra
+/csv/data
