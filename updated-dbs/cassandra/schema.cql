@@ -1,5 +1,3 @@
--- cqlsh -u 'my_username' -p 'my_password' -f /mydir/myfile.cql
-
 create keyspace if not exists carousel
   with replication = {
     'class': 'SimpleStrategy', 'replication_factor': 1
@@ -9,17 +7,17 @@ use carousel;
 
 create table places (
   placeId uuid,
-  title varchar NOT NULL,
-  pictureUrl varchar NOT NULL,
-  zipCode varchar NOT NULL,
-  roomType varchar NOT NULL,
-  numberBeds smallint NOT NULL,
-  rating decimal NOT NULL,
-  numberReviews int NOT NULL,
-  hostPlus boolean NOT NULL,
-  superHost boolean NOT NULL,
-  price decimal NOT NULL,
-  placeUrl varchar NOT NULL,
+  title varchar,
+  pictureUrl varchar,
+  zipCode varchar,
+  roomType varchar,
+  numberBeds smallint,
+  rating decimal,
+  numberReviews int,
+  hostPlus boolean,
+  superHost boolean,
+  price decimal,
+  placeUrl varchar,
   PRIMARY KEY (zipCode, placeId)
 );
 
