@@ -7,13 +7,14 @@ var generateTitle = () => {
   const adj = ['Spacious', 'Lovely', 'Quaint', 'Peaceful', 'Dreamy', 'Quiet'];
   const noun = ['Retreat', 'Cottage', 'Getaway', 'Home', 'Nook', 'Property', 'Retreat'];
   return adj[Math.floor(Math.random()* adj.length)] + ' ' + noun[Math.floor(Math.random()* noun.length)];
-}
+};
 
-const dataGen = (fileName, counterStart) => {
+const dataGen = (fileName, counterStart, numRecords) => {
   const writer = csvWriter();
+  console.log(counterStart);
   var counter = counterStart;
   writer.pipe(fs.createWriteStream(path.join(__dirname, '..', '..', 'data', 'pg', 'places', `${fileName}`)));
-  for (var i = 0; i < 10; i++) {
+  for (let i = 0; i < numRecords; i++) {
 
     let numBeds = Math.floor(Math.random() * 4 + 1);
     let bed = numBeds === 1 ? 'bed' : 'beds';
@@ -34,13 +35,19 @@ const dataGen = (fileName, counterStart) => {
     });
   }
   writer.end();
-  console.log('done');
+  console.log(`${fileName}: done`);
 };
 
-var generateFiles = () => {
-  dataGen('pgPlacesData1.csv', 1);
-  dataGen('pgPlacesData2.csv', 11);
-  dataGen('pgPlacesData3.csv', 21);
+
+var generateFiles = (records) => {
+  var recordsPerFile = Math.floor(records/3);
+  const file1Start = 1;
+  const file2Start = file1Start + recordsPerFile;
+  const file3Start = file2Start + recordsPerFile;
+
+  dataGen('pgPlacesData1.csv', file1Start, recordsPerFile);
+  dataGen('pgPlacesData2.csv', file2Start, recordsPerFile);
+  dataGen('pgPlacesData3.csv', file3Start, recordsPerFile);
 }
 
 module.exports.generateFiles = generateFiles;
