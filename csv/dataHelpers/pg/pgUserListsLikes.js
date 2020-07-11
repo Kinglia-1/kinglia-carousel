@@ -8,25 +8,30 @@ var generateListName = () => {
   return list[Math.floor(Math.random()* list.length)];
 }
 
-const dataGen = (fileName, counterStart) => {
+const dataGen = (fileName, counterStart, numRecords, numLists, numPlaces) => {
   const writer = csvWriter();
   var counter = counterStart;
   writer.pipe(fs.createWriteStream(path.join(__dirname, '..', '..', 'data', 'pg', 'userLikes', `${fileName}`)));
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < numRecords; i++) {
     writer.write({
       likeId: counter++,
-      listId:  Math.floor(Math.random() * 12000000 +1),
-      placeId: Math.floor(Math.random() * 12000000 +1)
+      listId:  Math.floor(Math.random() * numLists +1),
+      placeId: Math.floor(Math.random() * numPlaces +1)
     });
   }
   writer.end();
-  console.log('done');
+  console.log(`${fileName}: done`);
 };
 
-var generateFiles = () => {
-  dataGen('pgUserListsData1.csv', 1);
-  dataGen('pgUserListsData2.csv', 11);
-  dataGen('pgUserListsData3.csv', 21);
+var generateFiles = (records, lists, places) => {
+  var recordsPerFile = Math.floor(records/3);
+  const file1Start = 1;
+  const file2Start = file1Start + recordsPerFile;
+  const file3Start = file2Start + recordsPerFile;
+
+  dataGen('pgUserListsData1.csv', file1Start, recordsPerFile, lists, places);
+  dataGen('pgUserListsData2.csv', file2Start, recordsPerFile, lists, places);
+  dataGen('pgUserListsData3.csv', file3Start, recordsPerFile, lists, places);
 }
 
 module.exports.generateFiles = generateFiles;
