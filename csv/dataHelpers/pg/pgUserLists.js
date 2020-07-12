@@ -16,7 +16,7 @@ const dataGen = (fileName, counterStart, numRecords, numUsers) => {
     writer.write({
       listId: counter++,
       listName: generateListName(),
-      userId: Math.floor(Math.random() * numUsers +1)
+      userId: Math.floor(Math.random() * (numUsers - 2) +1)
     });
   }
   writer.end();
