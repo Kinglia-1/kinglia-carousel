@@ -8,7 +8,7 @@
     "server": "nodemon server/index.js",
     "db:setup": "node database/seed.js",
     "test": "jest",
-    "pg-csv-gen": "node csv/dataHelpers/pg/trigger.js"
+    "csv-gen": "node csv/dataHelpers/control.js"
   },
   "repository": {
     "type": "git",
