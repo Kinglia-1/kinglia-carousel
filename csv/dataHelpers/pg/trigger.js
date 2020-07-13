@@ -9,9 +9,6 @@ const totalUsers = ctrl.totalUsers;
 const totalLists = ctrl.totalLists;
 const totalLikes = ctrl.totalLikes;
 
-console.log('ctrl: ' + ctrl);
-console.log('places: ' + totalPlaces);
-
 const seedData = () => {
   places.generateFiles(totalPlaces);
   users.generateFiles(totalUsers);

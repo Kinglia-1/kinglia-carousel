@@ -11,7 +11,6 @@ var generateTitle = () => {
 
 const dataGen = (fileName, counterStart, numRecords) => {
   const writer = csvWriter();
-  console.log(counterStart);
   var counter = counterStart;
   writer.pipe(fs.createWriteStream(path.join(__dirname, '..', '..', 'data', 'pg', 'places', `${fileName}`)));
   for (let i = 0; i < numRecords; i++) {
@@ -41,7 +40,6 @@ const dataGen = (fileName, counterStart, numRecords) => {
 
 var generateFiles = (records) => {
   var recordsPerFile = Math.floor(records/3);
-  console.log('recper: ' + recordsPerFile);
   const file1Start = 1;
   const file2Start = file1Start + recordsPerFile;
   const file3Start = file2Start + recordsPerFile;

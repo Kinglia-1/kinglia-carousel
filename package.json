@@ -8,7 +8,7 @@
     "server": "nodemon server/index.js",
     "db:setup": "node database/seed.js",
     "test": "jest",
-    "csv-gen": "node csv/dataHelpers/control.js"
+    "csv-gen": "node --max-old-space-size=8192 csv/dataHelpers/control.js"
   },
   "repository": {
     "type": "git",
