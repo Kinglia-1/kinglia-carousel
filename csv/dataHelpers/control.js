@@ -13,7 +13,5 @@ module.exports = {
   totalLikes: totalLikes
 };
 
-console.log(pg);
-
 pg.seedData();
 cs.seedData();
