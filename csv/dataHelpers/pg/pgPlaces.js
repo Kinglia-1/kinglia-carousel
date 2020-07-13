@@ -22,7 +22,7 @@ const dataGen = (fileName, counterStart, numRecords) => {
     writer.write({
       placeId: counter++,
       title: generateTitle(),
-      pictureUrl: faker.image.nature(),
+      pictureUrl: 'https://loremflickr.com/320/240/house',
       zipCode: faker.address.zipCode(),
       roomType: `${numBeds} ${bed}`,
       numberBeds: Math.floor(Math.random() * 10 + 1),
@@ -41,6 +41,7 @@ const dataGen = (fileName, counterStart, numRecords) => {
 
 var generateFiles = (records) => {
   var recordsPerFile = Math.floor(records/3);
+  console.log('recper: ' + recordsPerFile);
   const file1Start = 1;
   const file2Start = file1Start + recordsPerFile;
   const file3Start = file2Start + recordsPerFile;

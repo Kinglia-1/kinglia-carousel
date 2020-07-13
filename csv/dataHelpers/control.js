@@ -1,6 +1,3 @@
-const pg = require('./pg/trigger.js')
-const cs = require('./cassandra/trigger.js')
-
 const totalPlaces = 100;
 const totalUsers = 10;
 const totalLists = totalUsers * 2;
@@ -12,6 +9,10 @@ module.exports = {
   totalLists: totalLists,
   totalLikes: totalLikes
 };
+
+const pg = require('./pg/trigger.js')
+const cs = require('./cassandra/trigger.js')
+
 
 pg.seedData();
 cs.seedData();
