@@ -15,8 +15,8 @@ const dataGen = (fileName, counterStart, numRecords, numLists, numPlaces) => {
   for (var i = 0; i < numRecords; i++) {
     writer.write({
       likeId: counter++,
-      listId:  Math.floor(Math.random() * (numLists - 2) +1),
-      placeId: Math.floor(Math.random() * (numPlaces - 2) +1)
+      listId:  Math.floor(Math.random() * (numLists - 1) +1),
+      placeId: Math.floor(Math.random() * (numPlaces - 1) +1)
     });
   }
   writer.end();

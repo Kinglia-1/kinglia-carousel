@@ -1,4 +1,4 @@
-const totalPlaces = 10000000;
+const totalPlaces = 100;
 const totalUsers = 10;
 const totalLists = totalUsers * 2;
 const totalLikes = totalLists * 5;

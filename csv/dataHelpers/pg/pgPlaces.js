@@ -9,9 +9,10 @@ var generateTitle = () => {
   return adj[Math.floor(Math.random()* adj.length)] + ' ' + noun[Math.floor(Math.random()* noun.length)];
 };
 
-const dataGen = (fileName, counterStart, numRecords) => {
+const dataGen = (fileName, counterStart, numRecords, last) => {
   const writer = csvWriter();
   var counter = counterStart;
+  numRecords = last ? numRecords + 1 : numRecords;
   writer.pipe(fs.createWriteStream(path.join(__dirname, '..', '..', 'data', 'pg', 'places', `${fileName}`)));
   for (let i = 0; i < numRecords; i++) {
 
@@ -46,7 +47,7 @@ var generateFiles = (records) => {
 
   dataGen('pgPlacesData1.csv', file1Start, recordsPerFile);
   dataGen('pgPlacesData2.csv', file2Start, recordsPerFile);
-  dataGen('pgPlacesData3.csv', file3Start, recordsPerFile);
+  dataGen('pgPlacesData3.csv', file3Start, recordsPerFile, true);
 }
 
 module.exports.generateFiles = generateFiles;
