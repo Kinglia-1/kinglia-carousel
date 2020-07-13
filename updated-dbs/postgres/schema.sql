@@ -12,7 +12,7 @@ CREATE TABLE places (
   numberReviews INTEGER NOT NULL,
   hostPlus BOOLEAN NOT NULL,
   superHost BOOLEAN NOT NULL,
-  price numeric(3,2) NOT NULL,
+  price money NOT NULL,
   placeUrl VARCHAR(2083) NOT NULL
 );
 

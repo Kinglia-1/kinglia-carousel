@@ -6,7 +6,7 @@ create keyspace if not exists carousel
 use carousel;
 
 create table places (
-  placeId uuid,
+  placeId int,
   title varchar,
   pictureUrl varchar,
   zipCode varchar,
@@ -23,9 +23,9 @@ create table places (
 
 create table likes (
   likeId uuid,
-  listId uuid,
+  listId int,
   listName varchar,
-  placeId uuid,
-  userId uuid,
+  placeId int,
+  userId int,
   PRIMARY KEY (listId, likeId)
 );
