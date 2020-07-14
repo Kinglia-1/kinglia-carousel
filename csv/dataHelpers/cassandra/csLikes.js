@@ -13,7 +13,7 @@ const dataGen = (fileName, numRecords, numLists, numPlaces, numUsers) => {
   writer.pipe(fs.createWriteStream(path.join(__dirname, '..', '..', 'data', 'cassandra', `${fileName}`)));
   for (var i = 0; i < numRecords; i++) {
     writer.write({
-      likeId: faker.UUID.v4(),
+      likeId: faker.random.uuid(),
       listId: Math.floor(Math.random() * (numLists - 1) +1),
       listName: generateListName(),
       placeId: Math.floor(Math.random() * (numPlaces - 1) +1),
