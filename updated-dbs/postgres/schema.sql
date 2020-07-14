@@ -17,6 +17,8 @@ CREATE TABLE places (
   streetAddress VARCHAR(120) NOT NULL,
   phoneNumber text NOT NULL,
   descr text,
+  internalNotes text,
+  hostNotes text,
   userName VARCHAR(100) NOT NULL,
   firstName VARCHAR(100) NOT NULL,
   lastName VARCHAR(100) NOT NULL,

@@ -38,12 +38,15 @@ const dataGen = (fileName, counterStart, numRecords, last) => {
       let streetAddress = faker.address.streetAddress();
       let phoneNumber = faker.phone.phoneNumber();
       let descr = faker.lorem.paragraph();
+      let internalNotes = faker.lorem.paragraph();
+      let hostNotes = faker.lorem.paragraph();
       let userName = faker.internet.userName();
       let firstName = faker.name.firstName();
       let lastName = faker.name.lastName();
       let email = faker.internet.email()
 
-      const record = `${placeId},${title},${pictureUrl},${zipCode},${roomType},${numberBeds},${rating},${numberReviews},${hostPlus},${superHost},${price},${placeUrl},${streetAddress},${phoneNumber},${descr},${userName},${firstName},${lastName},${email}\n`;
+      // add new
+      const record = `${placeId},${title},${pictureUrl},${zipCode},${roomType},${numberBeds},${rating},${numberReviews},${hostPlus},${superHost},${price},${placeUrl},${streetAddress},${phoneNumber},${descr},${internalNotes},${hostNotes},${userName},${firstName},${lastName},${email}\n`;
 
       if (i === 0) {
         writer.write(record, encoding, () => writer.end());
