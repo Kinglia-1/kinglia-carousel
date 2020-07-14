@@ -8,9 +8,10 @@ var generateListName = () => {
   return list[Math.floor(Math.random()* list.length)];
 }
 
-const dataGen = (fileName, numRecords, numLists, numPlaces, numUsers) => {
+const dataGen = (fileName, numRecords, numLists, numPlaces, numUsers, last) => {
   const writer = csvWriter();
   writer.pipe(fs.createWriteStream(path.join(__dirname, '..', '..', 'data', 'cassandra', `${fileName}`)));
+  numRecords = last ? numRecords + 1 : numRecords;
   for (var i = 0; i < numRecords; i++) {
     writer.write({
       likeId: faker.random.uuid(),
@@ -33,7 +34,7 @@ var generateFiles = (records, lists, places, users) => {
 
   dataGen('cassandraLikesData1.csv', recordsPerFile, records, lists, places, users);
   dataGen('cassandraLikesData2.csv', recordsPerFile, records, lists, places, users);
-  dataGen('cassandraLikesData3.csv', recordsPerFile, records, lists, places, users);
+  dataGen('cassandraLikesData3.csv', recordsPerFile, records, lists, places, users, true);
 }
 
 module.exports.generateFiles = generateFiles;

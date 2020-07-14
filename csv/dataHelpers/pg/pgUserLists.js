@@ -8,9 +8,10 @@ var generateListName = () => {
   return list[Math.floor(Math.random()* list.length)];
 }
 
-const dataGen = (fileName, counterStart, numRecords, numUsers) => {
+const dataGen = (fileName, counterStart, numRecords, numUsers, last) => {
   const writer = csvWriter();
   var counter = counterStart;
+  numRecords = last ? numRecords + 1 : numRecords;
   writer.pipe(fs.createWriteStream(path.join(__dirname, '..', '..', 'data', 'pg', 'userLists', `${fileName}`)));
   for (var i = 0; i < numRecords; i++) {
     writer.write({
@@ -31,7 +32,7 @@ var generateFiles = (records, users) => {
 
   dataGen('pgUserListsData1.csv', file1Start, recordsPerFile, users);
   dataGen('pgUserListsData2.csv', file2Start, recordsPerFile, users);
-  dataGen('pgUserListsData3.csv', file3Start, recordsPerFile, users);
+  dataGen('pgUserListsData3.csv', file3Start, recordsPerFile, users, true);
 }
 
 module.exports.generateFiles = generateFiles;
