@@ -45,7 +45,6 @@ const dataGen = (fileName, counterStart, numRecords, last) => {
       let lastName = faker.name.lastName();
       let email = faker.internet.email()
 
-      // add new
       const record = `${placeId},${title},${pictureUrl},${zipCode},${roomType},${numberBeds},${rating},${numberReviews},${hostPlus},${superHost},${price},${placeUrl},${streetAddress},${phoneNumber},${descr},${internalNotes},${hostNotes},${userName},${firstName},${lastName},${email}\n`;
 
       if (i === 0) {
