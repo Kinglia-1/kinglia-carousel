@@ -31,7 +31,14 @@ const dataGen = (fileName, counterStart, numRecords, last) => {
       hostPlus: Math.round(Math.random() * 1),
       superHost: Math.round(Math.random() * 1),
       price: faker.commerce.price(),
-      placeUrl: '#'
+      placeUrl: faker.internet.url(),
+      streetAddress: faker.address.streetAddress(),
+      phoneNumber: faker.phone.phoneNumber(),
+      descr: faker.lorem.paragraph(),
+      userName: faker.internet.userName(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email: faker.internet.email()
     });
   }
   writer.end();

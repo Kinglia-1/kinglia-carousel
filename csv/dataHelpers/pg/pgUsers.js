@@ -10,6 +10,10 @@ const dataGen = (fileName, counterStart, numRecords) => {
   for (var i = 0; i < numRecords; i++) {
     writer.write({
       userId: counter++,
+      userName: faker.internet.userName(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email: faker.internet.email()
     });
   }
   writer.end();

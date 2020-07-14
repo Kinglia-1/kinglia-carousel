@@ -18,6 +18,13 @@ create table places (
   superHost boolean,
   price decimal,
   placeUrl varchar,
+  streetAddress varchar NOT NULL,
+  phoneNumber varchar NOT NULL,
+  descr varchar,
+  userName varchar NOT NULL,
+  firstName varchar NOT NULL,
+  lastName varchar NOT NULL,
+  email varchar NOT NULL,
   PRIMARY KEY (zipCode, placeId)
 );
 
@@ -27,5 +34,9 @@ create table likes (
   listName varchar,
   placeId int,
   userId int,
+  userName varchar,
+  firstName varchar,
+  lastName varchar,
+  email varchar,
   PRIMARY KEY (listId, likeId)
 );

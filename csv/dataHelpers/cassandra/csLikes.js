@@ -17,7 +17,11 @@ const dataGen = (fileName, numRecords, numLists, numPlaces, numUsers) => {
       listId: Math.floor(Math.random() * (numLists - 1) +1),
       listName: generateListName(),
       placeId: Math.floor(Math.random() * (numPlaces - 1) +1),
-      userId: Math.floor(Math.random() * (numUsers - 1) +1)
+      userId: Math.floor(Math.random() * (numUsers - 1) +1),
+      userName: faker.internet.userName(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email: faker.internet.email()
     });
   }
   writer.end();
