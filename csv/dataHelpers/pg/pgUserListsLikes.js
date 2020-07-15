@@ -8,15 +8,16 @@ var generateListName = () => {
   return list[Math.floor(Math.random()* list.length)];
 }
 
-const dataGen = (fileName, counterStart, numRecords, numLists, numPlaces) => {
+const dataGen = (fileName, counterStart, numRecords, numLists, numPlaces, last) => {
   const writer = csvWriter();
   var counter = counterStart;
+  numRecords = last ? numRecords + 1 : numRecords;
   writer.pipe(fs.createWriteStream(path.join(__dirname, '..', '..', 'data', 'pg', 'userLikes', `${fileName}`)));
   for (var i = 0; i < numRecords; i++) {
     writer.write({
       likeId: counter++,
-      listId:  Math.floor(Math.random() * (numLists - 2) +1),
-      placeId: Math.floor(Math.random() * (numPlaces - 2) +1)
+      listId:  Math.floor(Math.random() * (numLists - 1) +1),
+      placeId: Math.floor(Math.random() * (numPlaces - 1) +1)
     });
   }
   writer.end();
@@ -31,7 +32,7 @@ var generateFiles = (records, lists, places) => {
 
   dataGen('pgUserLikesData1.csv', file1Start, recordsPerFile, lists, places);
   dataGen('pgUserLikesData2.csv', file2Start, recordsPerFile, lists, places);
-  dataGen('pgUserLikesData3.csv', file3Start, recordsPerFile, lists, places);
+  dataGen('pgUserLikesData3.csv', file3Start, recordsPerFile, lists, places, true);
 }
 
 module.exports.generateFiles = generateFiles;

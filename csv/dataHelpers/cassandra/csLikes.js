@@ -8,17 +8,21 @@ var generateListName = () => {
   return list[Math.floor(Math.random()* list.length)];
 }
 
-const dataGen = (fileName, counterStart, numRecords, numLists, numPlaces, numUsers) => {
+const dataGen = (fileName, numRecords, numLists, numPlaces, numUsers, last) => {
   const writer = csvWriter();
-  var counter = counterStart;
   writer.pipe(fs.createWriteStream(path.join(__dirname, '..', '..', 'data', 'cassandra', `${fileName}`)));
+  numRecords = last ? numRecords + 1 : numRecords;
   for (var i = 0; i < numRecords; i++) {
     writer.write({
-      likeId: counter++,
-      listId: Math.floor(Math.random() * (numLists - 2) +1),
+      likeId: faker.random.uuid(),
+      listId: Math.floor(Math.random() * (numLists - 1) +1),
       listName: generateListName(),
-      placeId: Math.floor(Math.random() * (numPlaces - 2) +1),
-      userId: Math.floor(Math.random() * (numUsers - 2) +1)
+      placeId: Math.floor(Math.random() * (numPlaces - 1) +1),
+      userId: Math.floor(Math.random() * (numUsers - 1) +1),
+      userName: faker.internet.userName(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email: faker.internet.email()
     });
   }
   writer.end();
@@ -27,13 +31,10 @@ const dataGen = (fileName, counterStart, numRecords, numLists, numPlaces, numUse
 
 var generateFiles = (records, lists, places, users) => {
   var recordsPerFile = Math.floor(records/3);
-  const file1Start = 1;
-  const file2Start = file1Start + recordsPerFile;
-  const file3Start = file2Start + recordsPerFile;
 
-  dataGen('cassandraLikesData1.csv', file1Start, recordsPerFile, records, lists, places, users);
-  dataGen('cassandraLikesData2.csv', file2Start, recordsPerFile, records, lists, places, users);
-  dataGen('cassandraLikesData3.csv', file3Start, recordsPerFile, records, lists, places, users);
+  dataGen('cassandraLikesData1.csv', recordsPerFile, records, lists, places, users);
+  dataGen('cassandraLikesData2.csv', recordsPerFile, records, lists, places, users);
+  dataGen('cassandraLikesData3.csv', recordsPerFile, records, lists, places, users, true);
 }
 
 module.exports.generateFiles = generateFiles;

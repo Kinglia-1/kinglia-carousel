@@ -12,13 +12,26 @@ CREATE TABLE places (
   numberReviews INTEGER NOT NULL,
   hostPlus BOOLEAN NOT NULL,
   superHost BOOLEAN NOT NULL,
-  price numeric(3,2) NOT NULL,
-  placeUrl VARCHAR(2083) NOT NULL
+  price money NOT NULL,
+  placeUrl VARCHAR(2083) NOT NULL,
+  streetAddress VARCHAR(120) NOT NULL,
+  phoneNumber text NOT NULL,
+  descr text,
+  internalNotes text,
+  hostNotes text,
+  userName VARCHAR(100) NOT NULL,
+  firstName VARCHAR(100) NOT NULL,
+  lastName VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL
 );
 
 DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users (
-  userId serial PRIMARY KEY
+  userId serial PRIMARY KEY,
+  userName VARCHAR(100) NOT NULL,
+  firstName VARCHAR(100) NOT NULL,
+  lastName VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL
 );
 
 DROP TABLE IF EXISTS user_lists CASCADE;
