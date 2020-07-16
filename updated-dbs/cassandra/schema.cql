@@ -40,5 +40,5 @@ create table likes (
   firstName varchar,
   lastName varchar,
   email varchar,
-  PRIMARY KEY (listId, likeId)
+  PRIMARY KEY (userid, listId, placeId)
 );
