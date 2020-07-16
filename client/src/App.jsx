@@ -89,9 +89,12 @@ class App extends React.Component {
 
   submitCreateListbutton(e){
     let obj = {
+      // REFACTOR -- userid
       "_id": this.state.user._id,
+      // REFACTOR -- placeid
       "likeplace": this.state.clickedplace._id,
       "list": this.state.likelistinput,
+      // REFACTOR -- killing this concept of true / false
       "like": true
     }
 
@@ -105,8 +108,10 @@ class App extends React.Component {
     .catch((e)=>{
       console.log(e);
     })
+    // REFACTOR -- not going to pull ALL users' data
     .then( ()=> axios.get(this.serverUserAdd))
     .then((res) => {
+      // REFACTOR -- line below won't be necessary any longer
       const currentUser = res.data[this.userIndex];
       this.setState({
         user: currentUser
@@ -122,15 +127,18 @@ class App extends React.Component {
     if(singleList._id !== ''){
       //patch request
       let placeId = singleList._id;
+      // REFACTOR -- killing t/f concept
       const obj = {
             like: singleList.like === true ? false: true
       }
+      // REFACTOR -- this will be a DELETE request
       axios.patch(`${this.serverUserAdd}/${placeId}`, obj)
       .then((res)=>{
         console.log(res.status);
       })    .catch((e)=>{
         console.log(e);
       })
+      // REFACTOR -- not going to pull data for ALL users
       .then( ()=> axios.get(this.serverUserAdd))
       .then((res) => {
         const currentUser = res.data[this.userIndex];
@@ -144,9 +152,13 @@ class App extends React.Component {
       e.preventDefault();
     }else if(singleList._id === ''){
       let obj = {
+        // REFACTOR -- line below will be userid
         "_id": this.state.user._id,
+        // REFACTOR -- placeid
         "likeplace": this.state.clickedplace._id,
+        // REFACTOR -- listName
         "list": singleList.list,
+        // REFACTOR -- killing t/f concept
         "like": true
       }
       axios.post(this.serverUserAdd, obj)
@@ -155,6 +167,7 @@ class App extends React.Component {
       })    .catch((e)=>{
         console.log(e);
       })
+      // REFACTOR -- no longer pulling ALL users' data
       .then( ()=> axios.get(this.serverUserAdd))
       .then((res) => {
         const currentUser = res.data[this.userIndex];
@@ -217,6 +230,7 @@ class App extends React.Component {
 
 
   componentDidMount(){
+    // REFACTOR -- pulling by zipcode now
     axios.get(this.serverPlaceAdd)
     .then((res)=>{
       //suppose to do some filtring here?
@@ -227,6 +241,7 @@ class App extends React.Component {
         totalplaces: totalplaces
       })
     })
+    // REFACTOR -- no longer pulling ALL users' data
     .then( ()=> axios.get(this.serverUserAdd))
     .then((res) => {
       //taking 1st sample as example

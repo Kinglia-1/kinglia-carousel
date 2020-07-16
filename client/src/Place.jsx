@@ -13,8 +13,10 @@ const Place = ({place, heartClicked, likeplace}) => {
   const placetype = () => {
     return(
       <div className={styles.placetype}>
+        {/* REFACTOR -- this is now roomtype */}
         {place.type}
         <span className={styles.placedot}>·</span>
+        {/* // REFACTOR -- this is now numberbeds */}
         {place.bed}
       </div>
     )
@@ -23,8 +25,10 @@ const Place = ({place, heartClicked, likeplace}) => {
 
   const checkLikePlace = () => {
     let result = false;
+    // REFACTOR -- placeid instead of _id
     let placeId = place._id;
     for(let i=0;i<likeplace.length;i++){
+      // REFACTOR -- name here is now placeid; place._id is now placeid; killing concept of t/f, so can just ignore last condition
       if(likeplace[i].name === place._id && likeplace[i].like === true){
         result = result || true;
       }
@@ -43,6 +47,7 @@ const Place = ({place, heartClicked, likeplace}) => {
           <span>
             <span className={styles.star}>&#9733;</span>
             <span className={styles.placerating}> {place.rating} </span>
+            {/* REFACTOR -- totalReview has different name now */}
             <span className={styles.placereview}>&nbsp;({place.totalReview})</span>
           </span>
       )
@@ -53,7 +58,9 @@ const Place = ({place, heartClicked, likeplace}) => {
     <li className={styles.listli}>
       <div className={styles.container}>
         <div className={styles.flexbox_container}>
+          {/* REFACTOR -- changed name of picture to pictureUrl*/}
           <img className={styles.placeimg} src={place.picture} width="265" height="177" />
+          {/* REFACTOR -- changed name of src to placeUrl */}
           <a className={styles.imgsrc} href={place.src} />
           <button className={styles.heartbutton} onClick={()=>heartClicked(place)}>
             <div className={styles.heartTextFix}>
