@@ -21,39 +21,39 @@ const LikeForm = ({
   let listOBJ = [];
   let unlist = [];
 
-  for(let i=0;i<user.likeplace.length;i++){
+  for(let i=0;i<user.likes.length;i++){
     //if place is the same as place clicked
-    // REFACTOR -- name is placeid here; _id is now placeid
-    if(user.likeplace[i].name === clickedplace._id){
+    // REFACTORED -- name is placeid here; _id is now placeid
+    if(user.likes[i].placeid === clickedplace.placeid){
       // insert item into listOBJ.
-      listOBJ.push(user.likeplace[i])
+      listOBJ.push(user.likes[i])
       // insert list into list array
-      // REFACTOR -- list is now listName
-      list.push(user.likeplace[i].list)
-      // REFACTOR -- list is now listName
-      if(unlist.indexOf(user.likeplace[i].list) >= 0){
-        // REFACTOR -- list is now listName
-        const index = unlist.indexOf(user.likeplace[i].list);
+      // REFACTORED -- list is now listName
+      list.push(user.likes[i].listname)
+      // REFACTORED -- list is now listName
+      if(unlist.indexOf(user.likes[i].listname) >= 0){
+        // REFACTORED -- list is now listName
+        const index = unlist.indexOf(user.likes[i].listname);
         unlist.splice(index,1);
       }
-    // REFACTOR -- list is now listName
-    }else if(list.indexOf(user.likeplace[i].list) < 0 && unlist.indexOf(user.likeplace[i].list) < 0){
+    // REFACTORED -- list is now listName
+    }else if(list.indexOf(user.likes[i].listname) < 0 && unlist.indexOf(user.likes[i].listname) < 0){
         //input it in unlist array
-        // REFACTOR -- list is now listName
-        unlist.push(user.likeplace[i].list);
+        // REFACTORED -- list is now listName
+        unlist.push(user.likes[i].listname);
     }
   }
   for(let i=0;i<unlist.length;i++){
     //create new object for the list that odes not contain place = place clicked
     let temp={
-      // REFACTOR -- this is now likeid
-      _id: '',
-      // REFACTOR -- this is now placeid
-      name: '',
-      // REFACTOR -- this is now listName
-      list: unlist[i],
-      // REFACTOR -- killing concept of t/f
-      like: false
+      // REFACTORED -- this is now likeid
+      likeid: '',
+      // REFACTORED -- this is now placeid
+      placeid: '',
+      // REFACTORED -- this is now listName
+      listname: unlist[i],
+      // REFACTORED -- killing concept of t/f
+      // like: false
     }
     //input into listOBJ.
     listOBJ.push(temp);

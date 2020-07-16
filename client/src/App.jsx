@@ -303,7 +303,8 @@ class App extends React.Component {
             <Carousel
               places={this.state.places}
               heartClicked = {this.heartClicked}
-              likeplace = {this.state.user.likeplace} />
+              // REFACTOR  changeed likeplace to likes
+              likes={this.state.user.likes} />
           </div>
         </div>
 

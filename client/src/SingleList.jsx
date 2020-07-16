@@ -4,8 +4,8 @@ import styles from './styles.css';
 
 const SingleList = ({singleList, listLikeToggle}) => {
   let likeRender= () =>{
-    // REFACTOR -- if singleList.likeid isn't '' instead
-    if(singleList.like === true){
+    // REFACTORED -- if singleList.likeid isn't '' instead
+    if(singleList.likeid !== ''){
       return styles.heartYesLikeinlist
     }else{
       return styles.heartNoLikeinlist
@@ -18,8 +18,8 @@ const SingleList = ({singleList, listLikeToggle}) => {
         <div className={styles.inbetweenlist}></div>
       </div>
       <div className={styles.containerlikelist}>
-        {/* REFACTOR -- list is now listName */}
-        <div>{singleList.list}</div>
+        {/* REFACTORED -- list is now listName */}
+        <div>{singleList.listname}</div>
         <div>
           <div onClick={(e)=>listLikeToggle(e,singleList)}>
             <div className={styles.heartInList}>
