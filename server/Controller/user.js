@@ -3,14 +3,14 @@ const pg = require('../../updated-dbs/postgres/pgconnect.js');
 
 module.exports = {
   get: (req,res) =>{
-    let text = `SELECT ll.listid, ul.listname, ll.placeid FROM list_likes ll JOIN user_lists ul ON ll.listid = ul.listid WHERE ul.userid = ${req.params.userid};`;
+    let text = `SELECT ll.likeid, ll.listid, ul.listname, ll.placeid FROM list_likes ll JOIN user_lists ul ON ll.listid = ul.listid WHERE ul.userid = ${req.params.userid};`;
 
     pg.query(text)
     .then((data) => {
       res.status(200).send(data.rows);
     })
     .catch((err) => {
-      console.log('Error in Places GET: ' + err);
+      console.log('Error in Users GET: ' + err);
     });
   },
   post: (req,res) =>{
@@ -22,28 +22,21 @@ module.exports = {
       pg.query(text2)
       .then(() => res.sendStatus(200));
     })
-    .catch((err) => {
-      console.log('Error in Places POST: ' + err);
-    });
+    .catch((err) => console.log('Error in Users POST: ' + err));
   },
   delete: (req, res) => {
-    Place.findByIdAndRemove(req.params.placeId)
+    let text = `DELETE FROM list_likes WHERE likeid = ${req.body.likeid}`;
+
+    pg.query(text)
     .then(() => res.sendStatus(200))
-    .catch((e) => {
-      console.log(e);
-      res.sendStatus(400);
-    });
+    .catch((err) => console.log('Error in Users DELETE'));
   },
   patch: (req,res) => {
-    User.update(
-      { "likeplace._id": req.params.placeId},
-      {"$set": { "likeplace.$.like": req.body.like}}
-    )
-    .then(() => res.sendStatus(202))
-    .catch((e)=> {
-      console.log(e);
-      res.sendStatus(400)
-    })
+    let text = `INSERT INTO list_likes(listid, placeid) VALUES(${req.body.listid}, ${req.body.placeid});`;
+
+    pg.query(text)
+    .then(() => res.sendStatus(200))
+    .catch(() => console.log('Error in Users PATCH: ' + err));
   }
 }
 
