@@ -94,12 +94,11 @@ class App extends React.Component {
   submitCreateListbutton(e){
     let obj = {
       // REFACTORED -- userid from _.id
-      // GK -- killed userid here since this.serverUserAdd has userid in it?
-      // "userid": this.state.user.userid,
-      // REFACTORED -- placeid from _id
-      "placeid": this.state.clickedplace.placeid,
+      "userid": this.state.user.userid,
       // REFACTORED -- list to listname for key
       "listname": this.state.likelistinput,
+      // REFACTORED -- placeid from _id
+      "placeid": this.state.clickedplace.placeid,
       // REFACTORED -- killing this concept of true / false
       // "like": true
     }
