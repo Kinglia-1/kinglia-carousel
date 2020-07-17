@@ -25,6 +25,14 @@ module.exports = {
     .then(() => res.sendStatus(202))
     .catch((e)=> res.sendStatus(400))
   },
+  delete: (req, res) => {
+    Place.findByIdAndRemove(req.params.placeId)
+    .then(() => res.sendStatus(200))
+    .catch((e) => {
+      console.log(e);
+      res.sendStatus(400);
+    });
+  },
   update: (req,res) => {
     User.update(
       { "likeplace._id": req.params.placeId},
@@ -36,6 +44,5 @@ module.exports = {
       res.sendStatus(400)
     })
   }
-
 }
 

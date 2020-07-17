@@ -1,4 +1,4 @@
 node_modules
 /csv/data
 .DS_Store
-psql.config
+psqlConfig.js
