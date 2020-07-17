@@ -7,6 +7,7 @@ module.exports = {
 
     pg.query(text)
     .then((data) => {
+      // DO WORK ON DATA (?)
       res.status(200).send(data.rows);
     })
     .catch((err) => {
@@ -43,7 +44,7 @@ module.exports = {
     let text = `INSERT INTO list_likes(listid, placeid) VALUES(${req.body.listid}, ${req.body.placeid});`;
 
     pg.query(text)
-    .then(() => res.sendStatus(200))
+    .then(() => res.sendStatus(204))
     .catch(() => {
       console.log('Error in Users PATCH: ' + err);
       res.sendStatus(400);

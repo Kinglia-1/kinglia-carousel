@@ -3,14 +3,16 @@
 ## Table of Contents
 
 1. [GET List of Nearby Places](#get-list-of-nearby-places)
-1. [GET User Lists](#get-user-lists)
+1. [GET User Likes](#get-user-likes)
 1. [POST Liked Places List](#post-liked-places-list)
 1. [PATCH Liked Places List](#patch-liked-places-list)
 1. [DELETE Liked Place from List](#delete-liked-place-from-list)
 
 ## GET List of Nearby Places
 
-* **Endpoint:** `api/places`
+* **Endpoint:** `places/:zip`
+
+* **Path Parameter(s):** `zip` (zip code)
 
 * **Success Status Code:** `200`
 
@@ -19,7 +21,7 @@
 * **Request Body:** JSON Object
 ```
   {
-    "zipCode": "Number"
+    "zipcode": "Number"
   }
 ```
 
@@ -27,28 +29,28 @@
 ```
   [
     {
-      "placeId": "Number",
+      "placeid": "Number",
       "title": "String",
-      "pictureUrl": "String",
-      "zipCode": "Number",
-      "roomType": "String",
-      "numberBeds": "Number",
+      "pictureurl": "String",
+      "zipcode": "Number",
+      "roomtype": "String",
+      "numberbeds": "Number",
       "rating": "Number",
-      "numberReviews": "Number",
-      "hostPlus": "Boolean",
-      "superHost": "Boolean",
+      "numberreviews": "Number",
+      "hostplus": "Boolean",
+      "superhost": "Boolean",
       "price": "Number",
-      "placeUrl": "String"
+      "placeurl": "String"
     },
     ...
   ]
 ```
 
-## GET User Lists
+## GET User Likes
 
-* **Endpoint:** `api/users/:userId`
+* **Endpoint:** `users/:userid`
 
-* **Path Parameter(s):** `userId`
+* **Path Parameter(s):** `userid`
 
 * **Success Status Code:** `200`
 
@@ -56,26 +58,22 @@
 
 * **Returns:** JSON Object
 ```
-  [
-    {
-      "listId": "Number",
-      "listName": "String",
-      "places": [
-        {
-          "placeId": "Number"
-        },
-        ...
-      ]
-    },
-    ...
-  ]
+  {
+    "userid": "Number",
+    "likes": [
+      {
+        "likeid": "Number",
+        "listname": "String",
+        "placeid": "Number"
+      },
+      ...
+    ]
+  }
 ```
 
 ## POST Liked Places List
 
-* **Endpoint:** `api/users/:userId`
-
-* **Path Parameter(s):** `userId`
+* **Endpoint:** `users/lists`
 
 * **Success Status Code:** `201`
 
@@ -84,17 +82,15 @@
 * **Request Body:** JSON Object
 ```
   {
-    "userId": "Number",
-    "listName": "String",
-    "placeId": "Number"
+    "userid": "Number",
+    "listname": "String",
+    "placeid": "Number"
   }
 ```
 
 ## PATCH Liked Places List
 
-* **Endpoint:** `api/users/:userId`
-
-* **Path Parameter(s):** `userId`
+* **Endpoint:** `users/lists`
 
 * **Success Status Code:** `204`
 
@@ -103,16 +99,14 @@
 * **Request Body:** JSON Object
 ```
   {
-    "listId": "Number",
-    "placeId": "Number"
+    "listid": "Number",
+    "placeid": "Number"
   }
 ```
 
 ## DELETE Liked Place from List
 
-* **Endpoint:** `api/users/:userId`
-
-* **Path Parameter(s):** `userId`
+* **Endpoint:** `users/lists`
 
 * **Success Status Code:** `204`
 
@@ -121,7 +115,6 @@
 * **Request Body:** JSON Object
 ```
   {
-    "listId": "Number",
-    "placeId": "Number"
+    "likeid": "Number"
   }
 ```
