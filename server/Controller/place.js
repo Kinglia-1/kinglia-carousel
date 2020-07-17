@@ -11,6 +11,7 @@ module.exports = {
     })
     .catch((err) => {
       console.log('error in Places GET: ' + err);
+      res.sendStatus(400);
     });
   }
 };

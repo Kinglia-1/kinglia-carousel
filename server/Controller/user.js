@@ -11,6 +11,7 @@ module.exports = {
     })
     .catch((err) => {
       console.log('Error in Users GET: ' + err);
+      res.sendStatus(400);
     });
   },
   post: (req,res) =>{
@@ -19,24 +20,34 @@ module.exports = {
     pg.query(text1)
     .then((listid) => {
       let text2 = `INSERT INTO list_likes(listid, placeid) VALUES(${listid.rows[0].listid}, ${req.body.placeid});`;
+
       pg.query(text2)
-      .then(() => res.sendStatus(200));
+      .then(() => res.sendStatus(201));
     })
-    .catch((err) => console.log('Error in Users POST: ' + err));
+    .catch((err) => {
+      console.log('Error in Users POST: ' + err);
+      res.sendStatus(400);
+    });
   },
   delete: (req, res) => {
     let text = `DELETE FROM list_likes WHERE likeid = ${req.body.likeid}`;
 
     pg.query(text)
-    .then(() => res.sendStatus(200))
-    .catch((err) => console.log('Error in Users DELETE'));
+    .then(() => res.sendStatus(204))
+    .catch((err) => {
+      console.log('Error in Users DELETE: ' + err);
+      res.sendStatus(400);
+    });
   },
   patch: (req,res) => {
     let text = `INSERT INTO list_likes(listid, placeid) VALUES(${req.body.listid}, ${req.body.placeid});`;
 
     pg.query(text)
     .then(() => res.sendStatus(200))
-    .catch(() => console.log('Error in Users PATCH: ' + err));
+    .catch(() => {
+      console.log('Error in Users PATCH: ' + err);
+      res.sendStatus(400);
+    });
   }
 }
 

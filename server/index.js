@@ -20,16 +20,8 @@ app.use(parser.json());
 var cors = require('cors')
 app.use(cors());
 
-//User - API Calls:
-// app.get('/api/users/:userid', UserController.get);
-// app.get('/api/users/', UserController.get);
-// app.post('/api/users', UserController.post);
-// app.patch('/api/users/:placeId', UserController.update);
-
 //Places API Calls:
 app.get('/places/:zip', PlaceController.get);
-// app.get('/api/places', PlaceController.get);
-// app.delete('/api/places/:placeId', PlaceController.delete);
 
 // Likes / Users
 // NEED TO REFLECT IN APP.JSX
