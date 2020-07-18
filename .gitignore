@@ -2,3 +2,5 @@ node_modules
 /csv/data
 .DS_Store
 psqlConfig.js
+newrelic.js
+newrelic_agent.log
