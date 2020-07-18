@@ -34,16 +34,11 @@ class App extends React.Component {
     this.listLikeToggle = this.listLikeToggle.bind(this);
     this.outsideModalClick = this.outsideModalClick.bind(this);
 
-    this.serverUserAdd = `http://localhost:3003/api/users/${this.state.user.userid}`; // formerly 54.215.84.53
-    this.serverPlaceAdd = "http://localhost:3003/api/places";
-    // GK -- Added this
-    this.serverLikes = `http://localhost:3003/api/likes`;
-    this.userIndex = 0;
+    this.address = 'http://localhost:3003'; // formerly 54.215.84.53
+    this.userIndex = 1;
     // GK -- Added this
     this.zip = 94110;
   }
-
-
 
   //heart clicked
   heartClicked(place){
@@ -104,7 +99,7 @@ class App extends React.Component {
     }
 
     // axios.post(this.serverUserAdd,obj)
-    axios.post(this.serverLikes, obj)
+    axios.post(`${this.address}/users/lists`, obj)
     .then((res)=>{
       this.setState({
         likelistinput: '',
@@ -115,7 +110,7 @@ class App extends React.Component {
       console.log(e);
     })
     // REFACTORED -- not going to pull ALL users' data (changed this.serverUserAdd)
-    .then( ()=> axios.get(this.serverUserAdd))
+    .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
     .then((res) => {
       // REFACTORED -- line below won't be necessary any longer
       // const currentUser = res.data[this.userIndex];
@@ -131,26 +126,17 @@ class App extends React.Component {
   }
 
   listLikeToggle(e, singleList){
-    // REFACTORED -- _id should be likeid
-    if(singleList.likeid !== ''){
-      //patch request
-      // REFACTORED -- _id should be likeid (?)
-      // let placeId = singleList._id;
-      // REFACTORED -- killing t/f concept
-      // const obj = {
-      //   likeid: singleList.likeid
-      //   // like: singleList.like === true ? false: true
-      // }
-      // REFACTORED -- this will be a DELETE request
-      // axios.patch(`${this.serverUserAdd}/${placeId}`, obj)
-      axios.delete(`${this.serverLikes}/${singleList.likeid}`)
+
+    // if it HAS a likeid
+    if(singleList.likeid){
+      axios.delete(`${this.address}/users/lists`, {data: {likeid: singleList.likeid}})
       .then((res)=>{
         console.log(res.status);
       })    .catch((e)=>{
         console.log(e);
       })
       // REFACTORED -- not going to pull data for ALL users
-      .then( ()=> axios.get(this.serverUserAdd))
+      .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
       .then((res) => {
         // REFACTORED
         const currentUser = res.data;
@@ -162,27 +148,21 @@ class App extends React.Component {
         console.log(e);
       })
       e.preventDefault();
-    }else if(singleList._id === ''){
+    }else if(!singleList.likeid){
       let obj = {
-        // REFACTORED -- line below will be userid
         "userid": this.state.user.userid,
-        // REFACTORED -- placeid
         "placeid": this.state.clickedplace.placeid,
-        // REFACTORED -- listName
-        "listname": singleList.listname,
-        // REFACTORED -- killing t/f concept
-        // "like": true
+        "listname": singleList.listname
       }
-      // REFACTORED
-      // axios.post(this.serverUserAdd, obj)
-      axios.patch(this.serverLikes, obj)
+      console.log('obj: '+ obj.userid);
+      axios.patch(`${this.address}/users/lists`, obj)
       .then((res)=>{
         console.log(res.status);
       })    .catch((e)=>{
         console.log(e);
       })
       // REFACTORED -- no longer pulling ALL users' data
-      .then( ()=> axios.get(this.serverUserAdd))
+      .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
       .then((res) => {
         // REFACTORED
         const currentUser = res.data;
@@ -247,7 +227,7 @@ class App extends React.Component {
   componentDidMount(){
     // REFACTORED -- pulling by zipcode now
     // axios.get(this.serverPlaceAdd)
-    axios.get(`${this.serverPlaceAdd}/${this.zip}`)
+    axios.get(`${this.address}/places/${this.zip}`)
     .then((res)=>{
       //suppose to do some filtring here?
       const totalplaces = [...res.data].slice(0,12);
@@ -258,7 +238,7 @@ class App extends React.Component {
       })
     })
     // REFACTORED -- no longer pulling ALL users' data
-    .then( ()=> axios.get(this.serverUserAdd))
+    .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
     .then((res) => {
       //taking 1st sample as example
       // REFACTORED

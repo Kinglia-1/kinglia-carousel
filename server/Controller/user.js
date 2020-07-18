@@ -7,8 +7,11 @@ module.exports = {
 
     pg.query(text)
     .then((data) => {
-      // DO WORK ON DATA (?)
-      res.status(200).send(data.rows);
+      let packet = {
+        userid: req.params.userid,
+        likes: data.rows
+      }
+      res.status(200).send(packet);
     })
     .catch((err) => {
       console.log('Error in Users GET: ' + err);
@@ -41,14 +44,23 @@ module.exports = {
     });
   },
   patch: (req,res) => {
-    let text = `INSERT INTO list_likes(listid, placeid) VALUES(${req.body.listid}, ${req.body.placeid});`;
+    // query to find listid for given user and listname
+      // create index for this
 
-    pg.query(text)
-    .then(() => res.sendStatus(204))
-    .catch(() => {
-      console.log('Error in Users PATCH: ' + err);
-      res.sendStatus(400);
-    });
+    let text1 = `SELECT listid FROM user_lists WHERE listname='${req.body.listname}' AND userid=${req.body.userid};`
+
+    pg.query(text1)
+    .then((listid) => {
+      let text2 = `INSERT INTO list_likes(listid, placeid) VALUES(${listid.rows[0].listid}, ${req.body.placeid});`;
+
+      pg.query(text2)
+      .then(() => res.sendStatus(204))
+      .catch((err) => {
+        console.log('Error in Users PATCH: ' + err);
+        res.sendStatus(400);
+      });
+    })
+
   }
 }
 

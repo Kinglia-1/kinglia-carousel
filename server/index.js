@@ -15,6 +15,7 @@ const UserController = require('./Controller/user.js')
 //init parser
 const parser = require('body-parser')
 app.use(parser.json());
+app.use(parser.urlencoded({ extended: false }));
 
 //init cors
 var cors = require('cors')

@@ -26,10 +26,10 @@ const LikeForm = ({
     // REFACTORED -- name is placeid here; _id is now placeid
     if(user.likes[i].placeid === clickedplace.placeid){
       // insert item into listOBJ.
-      listOBJ.push(user.likes[i])
+      listOBJ.push(user.likes[i]);
       // insert list into list array
       // REFACTORED -- list is now listName
-      list.push(user.likes[i].listname)
+      list.push(user.likes[i].listname);
       // REFACTORED -- list is now listName
       if(unlist.indexOf(user.likes[i].listname) >= 0){
         // REFACTORED -- list is now listName
@@ -49,17 +49,17 @@ const LikeForm = ({
       // REFACTORED -- this is now likeid
       likeid: '',
       // REFACTORED -- this is now placeid
-      placeid: '',
-      // REFACTORED -- this is now listName
+      // there is a listid for each!!! make
+      listid: '',
       listname: unlist[i],
-      // REFACTORED -- killing concept of t/f
-      // like: false
+      placeid: ''
     }
     //input into listOBJ.
     listOBJ.push(temp);
   }
   listOBJ.sort((a,b) => {
-    return a.list.localeCompare(b.list) ;
+    // there is an error here
+    return a.listname.localeCompare(b.listname) ;
   })
 
   const modelOpenfunction = () =>{

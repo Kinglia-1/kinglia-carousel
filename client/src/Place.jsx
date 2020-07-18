@@ -79,7 +79,7 @@ const Place = ({place, heartClicked, likes}) => {
           {place.title}
         </div>
         <div className={styles.placepricediv}>
-          <span className={styles.placeprice}>${place.price}</span> / night
+          <span className={styles.placeprice}>{place.price}</span> / night
         </div>
       </div>
     </li>
