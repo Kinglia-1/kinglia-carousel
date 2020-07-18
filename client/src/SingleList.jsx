@@ -4,7 +4,6 @@ import styles from './styles.css';
 
 const SingleList = ({singleList, listLikeToggle}) => {
   let likeRender= () =>{
-    // REFACTORED -- if singleList.likeid isn't '' instead
     if(singleList.likeid !== ""){
       return styles.heartYesLikeinlist
     }else{

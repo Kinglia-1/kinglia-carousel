@@ -13,10 +13,8 @@ const Place = ({place, heartClicked, likes}) => {
   const placetype = () => {
     return(
       <div className={styles.placetype}>
-        {/* REFACTORED -- this is now roomtype */}
         {place.roomtype}
         <span className={styles.placedot}>·</span>
-        {/* REFACTORED -- this is now numberbeds */}
         {place.numberbeds}
       </div>
     )
@@ -25,11 +23,7 @@ const Place = ({place, heartClicked, likes}) => {
 
   const checkLikePlace = () => {
     let result = false;
-    // REFACTORED -- placeid instead of _id
-    // let placeId = place.placeid;
     for(let i=0;i<likes.length;i++){
-      // REFACTORED -- name here is now placeid; place._id is now placeid; killing concept of t/f, so can just ignore last condition
-      // GK -- double check this edit
       if(likes[i].placeid === place.placeid){
         result = result || true;
       }
@@ -48,7 +42,6 @@ const Place = ({place, heartClicked, likes}) => {
           <span>
             <span className={styles.star}>&#9733;</span>
             <span className={styles.placerating}> {place.rating} </span>
-            {/* REFACTORED -- totalReview has different name now */}
             <span className={styles.placereview}>&nbsp;({place.numberreviews})</span>
           </span>
       )
@@ -59,9 +52,7 @@ const Place = ({place, heartClicked, likes}) => {
     <li className={styles.listli}>
       <div className={styles.container}>
         <div className={styles.flexbox_container}>
-          {/* REFACTORED -- changed name of picture to pictureUrl*/}
           <img className={styles.placeimg} src={place.pictureurl} width="265" height="177" />
-          {/* REFACTORED -- changed name of src to placeUrl */}
           <a className={styles.imgsrc} href={place.placeurl} />
           <button className={styles.heartbutton} onClick={()=>heartClicked(place)}>
             <div className={styles.heartTextFix}>

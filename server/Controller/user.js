@@ -44,9 +44,6 @@ module.exports = {
     });
   },
   patch: (req,res) => {
-    // query to find listid for given user and listname
-      // create index for this
-
     let text1 = `SELECT listid FROM user_lists WHERE listname='${req.body.listname}' AND userid=${req.body.userid};`
 
     pg.query(text1)

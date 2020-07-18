@@ -22,43 +22,26 @@ const LikeForm = ({
   let unlist = [];
 
   for(let i=0;i<user.likes.length;i++){
-    //if place is the same as place clicked
-    // REFACTORED -- name is placeid here; _id is now placeid
     if(user.likes[i].placeid === clickedplace.placeid){
-      // insert item into listOBJ.
       listOBJ.push(user.likes[i]);
-      // insert list into list array
-      // REFACTORED -- list is now listName
       list.push(user.likes[i].listname);
-      // REFACTORED -- list is now listName
       if(unlist.indexOf(user.likes[i].listname) >= 0){
-        // REFACTORED -- list is now listName
         const index = unlist.indexOf(user.likes[i].listname);
         unlist.splice(index,1);
       }
-    // REFACTORED -- list is now listName
-    }else if(list.indexOf(user.likes[i].listname) < 0 && unlist.indexOf(user.likes[i].listname) < 0){
-        //input it in unlist array
-        // REFACTORED -- list is now listName
+    }else if(list.indexOf(user.likes[i].listname) < 0 && unlist.indexOf(user.likes[i].listname) < 0) {
         unlist.push(user.likes[i].listname);
     }
   }
   for(let i=0;i<unlist.length;i++){
-    //create new object for the list that odes not contain place = place clicked
     let temp={
-      // REFACTORED -- this is now likeid
       likeid: '',
-      // REFACTORED -- this is now placeid
-      // there is a listid for each!!! make
-      listid: '',
       listname: unlist[i],
       placeid: ''
     }
-    //input into listOBJ.
     listOBJ.push(temp);
   }
   listOBJ.sort((a,b) => {
-    // there is an error here
     return a.listname.localeCompare(b.listname) ;
   })
 

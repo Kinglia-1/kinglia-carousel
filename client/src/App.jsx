@@ -36,7 +36,6 @@ class App extends React.Component {
 
     this.address = 'http://localhost:3003'; // formerly 54.215.84.53
     this.userIndex = 1;
-    // GK -- Added this
     this.zip = 94110;
   }
 
@@ -88,17 +87,11 @@ class App extends React.Component {
 
   submitCreateListbutton(e){
     let obj = {
-      // REFACTORED -- userid from _.id
       "userid": this.state.user.userid,
-      // REFACTORED -- list to listname for key
       "listname": this.state.likelistinput,
-      // REFACTORED -- placeid from _id
-      "placeid": this.state.clickedplace.placeid,
-      // REFACTORED -- killing this concept of true / false
-      // "like": true
+      "placeid": this.state.clickedplace.placeid
     }
 
-    // axios.post(this.serverUserAdd,obj)
     axios.post(`${this.address}/users/lists`, obj)
     .then((res)=>{
       this.setState({
@@ -109,11 +102,8 @@ class App extends React.Component {
     .catch((e)=>{
       console.log(e);
     })
-    // REFACTORED -- not going to pull ALL users' data (changed this.serverUserAdd)
     .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
     .then((res) => {
-      // REFACTORED -- line below won't be necessary any longer
-      // const currentUser = res.data[this.userIndex];
       const currentUser = res.data;
       this.setState({
         user: currentUser
@@ -126,19 +116,16 @@ class App extends React.Component {
   }
 
   listLikeToggle(e, singleList){
-
-    // if it HAS a likeid
     if(singleList.likeid){
       axios.delete(`${this.address}/users/lists`, {data: {likeid: singleList.likeid}})
       .then((res)=>{
         console.log(res.status);
-      })    .catch((e)=>{
+      })
+      .catch((e)=>{
         console.log(e);
       })
-      // REFACTORED -- not going to pull data for ALL users
       .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
       .then((res) => {
-        // REFACTORED
         const currentUser = res.data;
         this.setState({
           user: currentUser
@@ -154,17 +141,15 @@ class App extends React.Component {
         "placeid": this.state.clickedplace.placeid,
         "listname": singleList.listname
       }
-      console.log('obj: '+ obj.userid);
       axios.patch(`${this.address}/users/lists`, obj)
       .then((res)=>{
         console.log(res.status);
-      })    .catch((e)=>{
+      })
+      .catch((e)=>{
         console.log(e);
       })
-      // REFACTORED -- no longer pulling ALL users' data
       .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
       .then((res) => {
-        // REFACTORED
         const currentUser = res.data;
         this.setState({
           user: currentUser
@@ -177,11 +162,7 @@ class App extends React.Component {
     }
   }
 
-
-
-
   //end of List form button interrupt
-
   //topbar onclick
   leftArrowClicked(){
     const scroller = document.getElementById('scroller');
@@ -225,8 +206,6 @@ class App extends React.Component {
 
 
   componentDidMount(){
-    // REFACTORED -- pulling by zipcode now
-    // axios.get(this.serverPlaceAdd)
     axios.get(`${this.address}/places/${this.zip}`)
     .then((res)=>{
       //suppose to do some filtring here?
@@ -237,11 +216,8 @@ class App extends React.Component {
         totalplaces: totalplaces
       })
     })
-    // REFACTORED -- no longer pulling ALL users' data
     .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
     .then((res) => {
-      //taking 1st sample as example
-      // REFACTORED
       const currentUser = res.data;
       this.setState({
         isLoaded:true,
@@ -282,7 +258,6 @@ class App extends React.Component {
             <Carousel
               places={this.state.places}
               heartClicked = {this.heartClicked}
-              // REFACTOR  changeed likeplace to likes
               likes={this.state.user.likes} />
           </div>
         </div>

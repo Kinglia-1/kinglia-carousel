@@ -4,8 +4,6 @@ import styles from './styles.css';
 // import ScrollView from './ScrollView.jsx';
 // import ScrollElement from './ScrollElement.jsx';
 
-// GK -- changed likeplace to likes
-
 const Carousel = ({places, heartClicked, likes}) => (
   <div className={styles.row}>
       <div className={styles.row__inner}>
