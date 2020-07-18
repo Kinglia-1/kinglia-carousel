@@ -21,35 +21,28 @@ const LikeForm = ({
   let listOBJ = [];
   let unlist = [];
 
-  for(let i=0;i<user.likeplace.length;i++){
-    //if place is the same as place clicked
-    if(user.likeplace[i].name === clickedplace._id){
-      // insert item into listOBJ.
-      listOBJ.push(user.likeplace[i])
-      // insert list into list array
-      list.push(user.likeplace[i].list)
-      if(unlist.indexOf(user.likeplace[i].list) >= 0){
-        const index = unlist.indexOf(user.likeplace[i].list);
+  for(let i=0;i<user.likes.length;i++){
+    if(user.likes[i].placeid === clickedplace.placeid){
+      listOBJ.push(user.likes[i]);
+      list.push(user.likes[i].listname);
+      if(unlist.indexOf(user.likes[i].listname) >= 0){
+        const index = unlist.indexOf(user.likes[i].listname);
         unlist.splice(index,1);
       }
-    }else if(list.indexOf(user.likeplace[i].list) < 0 && unlist.indexOf(user.likeplace[i].list) < 0){
-        //input it in unlist array
-      unlist.push(user.likeplace[i].list);
+    }else if(list.indexOf(user.likes[i].listname) < 0 && unlist.indexOf(user.likes[i].listname) < 0) {
+        unlist.push(user.likes[i].listname);
     }
   }
   for(let i=0;i<unlist.length;i++){
-    //create new object for the list that odes not contain place = place clicked
     let temp={
-      _id: '',
-      name: '',
-      list: unlist[i],
-      like: false
+      likeid: '',
+      listname: unlist[i],
+      placeid: ''
     }
-    //input into listOBJ.
     listOBJ.push(temp);
   }
   listOBJ.sort((a,b) => {
-    return a.list.localeCompare(b.list) ;
+    return a.listname.localeCompare(b.listname) ;
   })
 
   const modelOpenfunction = () =>{

@@ -4,7 +4,7 @@ import styles from './styles.css';
 
 const SingleList = ({singleList, listLikeToggle}) => {
   let likeRender= () =>{
-    if(singleList.like === true){
+    if(singleList.likeid !== ""){
       return styles.heartYesLikeinlist
     }else{
       return styles.heartNoLikeinlist
@@ -17,7 +17,7 @@ const SingleList = ({singleList, listLikeToggle}) => {
         <div className={styles.inbetweenlist}></div>
       </div>
       <div className={styles.containerlikelist}>
-        <div>{singleList.list}</div>
+        <div>{singleList.listname}</div>
         <div>
           <div onClick={(e)=>listLikeToggle(e,singleList)}>
             <div className={styles.heartInList}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.css';
 
-const Place = ({place, heartClicked, likeplace}) => {
+const Place = ({place, heartClicked, likes}) => {
   const superhostRender = () =>{
     if(place.superhost === true){
       return (
@@ -13,9 +13,9 @@ const Place = ({place, heartClicked, likeplace}) => {
   const placetype = () => {
     return(
       <div className={styles.placetype}>
-        {place.type}
+        {place.roomtype}
         <span className={styles.placedot}>·</span>
-        {place.bed}
+        {place.numberbeds}
       </div>
     )
 
@@ -23,9 +23,8 @@ const Place = ({place, heartClicked, likeplace}) => {
 
   const checkLikePlace = () => {
     let result = false;
-    let placeId = place._id;
-    for(let i=0;i<likeplace.length;i++){
-      if(likeplace[i].name === place._id && likeplace[i].like === true){
+    for(let i=0;i<likes.length;i++){
+      if(likes[i].placeid === place.placeid){
         result = result || true;
       }
     }
@@ -43,7 +42,7 @@ const Place = ({place, heartClicked, likeplace}) => {
           <span>
             <span className={styles.star}>&#9733;</span>
             <span className={styles.placerating}> {place.rating} </span>
-            <span className={styles.placereview}>&nbsp;({place.totalReview})</span>
+            <span className={styles.placereview}>&nbsp;({place.numberreviews})</span>
           </span>
       )
     }
@@ -53,8 +52,8 @@ const Place = ({place, heartClicked, likeplace}) => {
     <li className={styles.listli}>
       <div className={styles.container}>
         <div className={styles.flexbox_container}>
-          <img className={styles.placeimg} src={place.picture} width="265" height="177" />
-          <a className={styles.imgsrc} href={place.src} />
+          <img className={styles.placeimg} src={place.pictureurl} width="265" height="177" />
+          <a className={styles.imgsrc} href={place.placeurl} />
           <button className={styles.heartbutton} onClick={()=>heartClicked(place)}>
             <div className={styles.heartTextFix}>
               <svg className={checkLikePlace()} viewBox="0 0 32 32">
@@ -71,7 +70,7 @@ const Place = ({place, heartClicked, likeplace}) => {
           {place.title}
         </div>
         <div className={styles.placepricediv}>
-          <span className={styles.placeprice}>${place.price}</span> / night
+          <span className={styles.placeprice}>{place.price}</span> / night
         </div>
       </div>
     </li>

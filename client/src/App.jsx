@@ -34,12 +34,10 @@ class App extends React.Component {
     this.listLikeToggle = this.listLikeToggle.bind(this);
     this.outsideModalClick = this.outsideModalClick.bind(this);
 
-    this.serverUserAdd = "http://localhost:3003/api/users"; // formerly 54.215.84.53
-    this.serverPlaceAdd = "http://localhost:3003/api/places";
-    this.userIndex = 0;
+    this.address = 'http://localhost:3003'; // formerly 54.215.84.53
+    this.userIndex = 1;
+    this.zip = 94110;
   }
-
-
 
   //heart clicked
   heartClicked(place){
@@ -89,13 +87,12 @@ class App extends React.Component {
 
   submitCreateListbutton(e){
     let obj = {
-      "_id": this.state.user._id,
-      "likeplace": this.state.clickedplace._id,
-      "list": this.state.likelistinput,
-      "like": true
+      "userid": this.state.user.userid,
+      "listname": this.state.likelistinput,
+      "placeid": this.state.clickedplace.placeid
     }
 
-    axios.post(this.serverUserAdd,obj)
+    axios.post(`${this.address}/users/lists`, obj)
     .then((res)=>{
       this.setState({
         likelistinput: '',
@@ -105,9 +102,9 @@ class App extends React.Component {
     .catch((e)=>{
       console.log(e);
     })
-    .then( ()=> axios.get(this.serverUserAdd))
+    .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
     .then((res) => {
-      const currentUser = res.data[this.userIndex];
+      const currentUser = res.data;
       this.setState({
         user: currentUser
       })
@@ -119,21 +116,17 @@ class App extends React.Component {
   }
 
   listLikeToggle(e, singleList){
-    if(singleList._id !== ''){
-      //patch request
-      let placeId = singleList._id;
-      const obj = {
-            like: singleList.like === true ? false: true
-      }
-      axios.patch(`${this.serverUserAdd}/${placeId}`, obj)
+    if(singleList.likeid){
+      axios.delete(`${this.address}/users/lists`, {data: {likeid: singleList.likeid}})
       .then((res)=>{
         console.log(res.status);
-      })    .catch((e)=>{
+      })
+      .catch((e)=>{
         console.log(e);
       })
-      .then( ()=> axios.get(this.serverUserAdd))
+      .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
       .then((res) => {
-        const currentUser = res.data[this.userIndex];
+        const currentUser = res.data;
         this.setState({
           user: currentUser
         })
@@ -142,22 +135,22 @@ class App extends React.Component {
         console.log(e);
       })
       e.preventDefault();
-    }else if(singleList._id === ''){
+    }else if(!singleList.likeid){
       let obj = {
-        "_id": this.state.user._id,
-        "likeplace": this.state.clickedplace._id,
-        "list": singleList.list,
-        "like": true
+        "userid": this.state.user.userid,
+        "placeid": this.state.clickedplace.placeid,
+        "listname": singleList.listname
       }
-      axios.post(this.serverUserAdd, obj)
+      axios.patch(`${this.address}/users/lists`, obj)
       .then((res)=>{
         console.log(res.status);
-      })    .catch((e)=>{
+      })
+      .catch((e)=>{
         console.log(e);
       })
-      .then( ()=> axios.get(this.serverUserAdd))
+      .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
       .then((res) => {
-        const currentUser = res.data[this.userIndex];
+        const currentUser = res.data;
         this.setState({
           user: currentUser
         })
@@ -169,11 +162,7 @@ class App extends React.Component {
     }
   }
 
-
-
-
   //end of List form button interrupt
-
   //topbar onclick
   leftArrowClicked(){
     const scroller = document.getElementById('scroller');
@@ -217,7 +206,7 @@ class App extends React.Component {
 
 
   componentDidMount(){
-    axios.get(this.serverPlaceAdd)
+    axios.get(`${this.address}/places/${this.zip}`)
     .then((res)=>{
       //suppose to do some filtring here?
       const totalplaces = [...res.data].slice(0,12);
@@ -227,10 +216,9 @@ class App extends React.Component {
         totalplaces: totalplaces
       })
     })
-    .then( ()=> axios.get(this.serverUserAdd))
+    .then( ()=> axios.get(`${this.address}/users/${this.userIndex}`))
     .then((res) => {
-      //taking 1st sample as example
-      const currentUser = res.data[this.userIndex];
+      const currentUser = res.data;
       this.setState({
         isLoaded:true,
         user: currentUser
@@ -270,7 +258,7 @@ class App extends React.Component {
             <Carousel
               places={this.state.places}
               heartClicked = {this.heartClicked}
-              likeplace = {this.state.user.likeplace} />
+              likes={this.state.user.likes} />
           </div>
         </div>
 

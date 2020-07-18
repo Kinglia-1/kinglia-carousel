@@ -4,7 +4,7 @@ import styles from './styles.css';
 // import ScrollView from './ScrollView.jsx';
 // import ScrollElement from './ScrollElement.jsx';
 
-const Carousel = ({places, heartClicked, likeplace}) => (
+const Carousel = ({places, heartClicked, likes}) => (
   <div className={styles.row}>
       <div className={styles.row__inner}>
         <ul className={styles.listul} id="scroller">
@@ -13,7 +13,7 @@ const Carousel = ({places, heartClicked, likeplace}) => (
                   key={index}
                   place={place}
                   heartClicked = {heartClicked}
-                  likeplace = {likeplace}/>
+                  likes = {likes}/>
           ))}
         </ul>
       </div>
