@@ -18,13 +18,6 @@
 
 * **Failure Status Code:** `400`
 
-* **Request Body:** JSON Object
-```
-  {
-    "zipcode": "Number"
-  }
-```
-
 * **Returns:** JSON Object
 ```
   [
@@ -99,8 +92,9 @@
 * **Request Body:** JSON Object
 ```
   {
-    "listid": "Number",
-    "placeid": "Number"
+    "userid": "Number",
+    "placeid": "Number",
+    "listname": "Number"
   }
 ```
 

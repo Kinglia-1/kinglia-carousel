@@ -1,8 +1,9 @@
-const express = require('express')
-const path = require('path')
-const axios = require('axios')
-const app = express()
-const port = 3003
+const express = require('express');
+const newrelic = require('newrelic');
+const path = require('path');
+const axios = require('axios');
+const app = express();
+const port = 3003;
 
 // setup Express Static files
 app.use(express.static(path.join(__dirname,'..','client','dist')))
