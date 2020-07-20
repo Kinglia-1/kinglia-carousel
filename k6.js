@@ -12,7 +12,7 @@ export let options = {
 };
 
 export default function() {
-  const zip = Math.floor(Math.random()*90000) + 10000;
+  const zip = Math.floor(Math.random() * 90000) + 10000;
   http.get(`http://localhost:3003/places/${zip}`);
   sleep(1);
 
