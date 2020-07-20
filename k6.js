@@ -6,8 +6,7 @@ export let options = {
     {duration: '1s', target: 1},
     {duration: '1s', target: 10},
     {duration: '1s', target: 100},
-    {duration: '1s', target: 1000},
-    {duration: '1s', target: 1200},
+    {duration: '1s', target: 1000}
   ],
 };
 
@@ -18,5 +17,16 @@ export default function() {
 
   const userid = Math.floor((Math. random() * 1000000) + 1);
   http.get(`http://localhost:3003/users/${userid}`);
+  sleep(1);
+
+  // before running test, be sure to create list called 'stresslist' from userid 1
+  const placeid = Math.floor((Math. random() * 1000000) + 1);
+  const payload = {
+    userid: 1,
+    placeid: placeid,
+    listname: 'stresslist'
+  };
+  const headers = {'Content-Type': 'application/json'};
+  http.patch(`http://localhost:3003/users/lists`, JSON.stringify(payload), {headers: headers});
   sleep(1);
 }
