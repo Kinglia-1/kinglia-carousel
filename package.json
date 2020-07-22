@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "webpack": "webpack -d --watch",
+    "build": "webpack --mode production",
     "server": "nodemon server/index.js",
     "db:setup": "node database/seed.js",
     "test": "jest",
