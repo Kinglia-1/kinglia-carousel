@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './styles.css';
 
-
 const TopBar = ({page, totalpage, leftArrowClicked, rightArrowClicked}) => (
   <div className={styles.outline} >
     <div className={styles.moreplacetostay}>
