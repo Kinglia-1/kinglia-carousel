@@ -45,6 +45,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-modal": "^3.11.2",
+    "redis": "^3.0.2",
     "scroll-into-view": "^1.14.2"
   },
   "devDependencies": {

@@ -8,7 +8,12 @@ const PlaceController = require('./Controller/place.js');
 const UserController = require('./Controller/user.js');
 const parser = require('body-parser');
 const cors = require('cors');
+// const redis = require('redis');
 const app = express();
+
+// create and connet redis client to local instance
+// const client = redis.createClient(6379);
+// client.on('error', err => console.log('Error: ' + err));
 
 // setup Express Static files
 app.use(express.static(path.join(__dirname,'..','client','dist')));
@@ -29,3 +34,5 @@ app.delete('/users/lists', UserController.delete);
 app.patch('/users/lists', UserController.patch);
 
 app.listen(port, () => console.log(`App listening at port: ${port}`));
+
+// module.exports = client;
