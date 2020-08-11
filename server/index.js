@@ -2,24 +2,25 @@ const express = require('express');
 const newrelic = require('newrelic');
 const path = require('path');
 const axios = require('axios');
+const compression = require('compression');
 const app = express();
 const port = 3003;
 
 // setup Express Static files
-app.use(express.static(path.join(__dirname,'..','client','dist')))
+app.use(express.static(path.join(__dirname,'..','client','dist')));
+app.use(compression());
 
 // init controller
-const PlaceController = require('./Controller/place.js')
-const UserController = require('./Controller/user.js')
-// const LikeController = require('./Controller/like.js')
+const PlaceController = require('./Controller/place.js');
+const UserController = require('./Controller/user.js');
 
 // init parser
-const parser = require('body-parser')
+const parser = require('body-parser');
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: false }));
 
 // init cors
-var cors = require('cors')
+var cors = require('cors');
 app.use(cors());
 
 // Places
