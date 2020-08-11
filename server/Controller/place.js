@@ -3,7 +3,7 @@ const pg = require('../../updated-dbs/postgres/pgconnect.js');
 
 module.exports = {
   get: (req, res) => {
-    let text = `SELECT placeid, title, pictureurl, zipcode, roomtype, numberbeds, rating, numberreviews, hostplus, superhost, price, placeurl FROM places WHERE zipcode like '${req.params.zip}%' LIMIT 12;`;
+    let text = `SELECT placeid, title, pictureurl, zipcode, roomtype, numberbeds, rating, numberreviews, hostplus, superhost, price, placeurl FROM places WHERE zipcode = '${req.params.zip}' LIMIT 12;`;
 
     pg.query(text)
     .then((data) => {
