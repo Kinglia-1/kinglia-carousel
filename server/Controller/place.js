@@ -1,9 +1,7 @@
 const Place = require('../../database/Place.js');
 const pg = require('../../updated-dbs/postgres/pgconnect.js');
-// const client = require('../index.js');
 const redis = require('redis');
 
-// create and connet redis client to local instance
 const client = redis.createClient(6379);
 client.on('error', err => console.log('Error: ' + err));
 
