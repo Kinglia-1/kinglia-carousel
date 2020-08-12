@@ -4,3 +4,4 @@ node_modules
 psqlConfig.js
 newrelic.js
 newrelic_agent.log
+dump.rdb

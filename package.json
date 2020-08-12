@@ -6,7 +6,8 @@
   "scripts": {
     "webpack": "webpack -d --watch",
     "build": "webpack --mode production",
-    "server": "nodemon server/index.js",
+    "prod-server": "NODE_ENV=production node server/index.js",
+    "nodemon": "nodemon server/index.js",
     "db:setup": "node database/seed.js",
     "test": "jest",
     "csv-gen": "node --max-old-space-size=10240 csv/dataHelpers/control.js"
@@ -25,6 +26,7 @@
     "axios": "^0.19.2",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
     "cors": "^2.8.5",
     "csv-write-stream": "^2.0.0",
     "csv-writer": "^1.6.0",
@@ -43,6 +45,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-modal": "^3.11.2",
+    "redis": "^3.0.2",
     "scroll-into-view": "^1.14.2"
   },
   "devDependencies": {

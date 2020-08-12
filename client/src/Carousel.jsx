@@ -1,8 +1,6 @@
 import React from 'react';
 import Place from './Place.jsx';
 import styles from './styles.css';
-// import ScrollView from './ScrollView.jsx';
-// import ScrollElement from './ScrollElement.jsx';
 
 const Carousel = ({places, heartClicked, likes}) => (
   <div className={styles.row}>

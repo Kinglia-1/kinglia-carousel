@@ -1,12 +1,11 @@
 const { Pool } = require('pg');
 const pgConfig = require('../../psqlConfig.js');
 
-
 const client = new Pool({
   user: pgConfig.user,
   password: pgConfig.password,
   host: pgConfig.host,
-  port: pgConfig.port,
+  // port: pgConfig.port, --> for cloud
   database: pgConfig.database
 });
 

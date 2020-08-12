@@ -55,8 +55,6 @@ const LikeForm = ({
     }
   }
 
-
-
   return (
     <div className={modelOpenfunction()} id="myModal">
       <div className={styles.popupfirst} onClick={(e)=>outsideModalClick(e)}>
@@ -89,7 +87,6 @@ const LikeForm = ({
         </div>
       </div>
     </div>
-
   )
 }
 

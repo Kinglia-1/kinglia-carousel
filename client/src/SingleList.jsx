@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './styles.css';
 
-
 const SingleList = ({singleList, listLikeToggle}) => {
   let likeRender= () =>{
     if(singleList.likeid !== ""){
