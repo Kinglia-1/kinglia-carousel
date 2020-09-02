@@ -1,16 +1,16 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
 
-export let options = {
+export const options = {
   stages: [
-    {duration: '1s', target: 1},
-    {duration: '1s', target: 10},
-    {duration: '1s', target: 100},
-    {duration: '60s', target: 4500}
+    { duration: '1s', target: 1 },
+    { duration: '1s', target: 10 },
+    { duration: '1s', target: 100 },
+    { duration: '60s', target: 4500 },
   ],
 };
 
-export default function() {
+export default function () {
   const zip = Math.floor(Math.random() * 90000) + 10000;
   http.get(`http://localhost:3003/places/${zip}`);
   sleep(1);
@@ -33,5 +33,4 @@ export default function() {
   // const headers = {'Content-Type': 'application/json'};
   // http.patch(`http://localhost:3003/users/lists`, JSON.stringify(payload), {headers: headers});
   // sleep(1);
-
 }
