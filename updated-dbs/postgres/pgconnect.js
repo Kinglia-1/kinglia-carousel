@@ -6,12 +6,11 @@ const client = new Pool({
   password: pgConfig.password,
   host: pgConfig.host,
   // port: pgConfig.port, --> for cloud
-  database: pgConfig.database
+  database: pgConfig.database,
 });
 
 client.connect()
   .then(() => console.log('Connected to psql database'))
-  .catch((err) => console.log(err))
-  // .finally(() => client.end());
+  .catch((err) => console.log(err));
 
 module.exports = client;

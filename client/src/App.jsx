@@ -34,7 +34,7 @@ class App extends React.Component {
     this.listLikeToggle = this.listLikeToggle.bind(this);
     this.outsideModalClick = this.outsideModalClick.bind(this);
 
-    this.address = 'http://kinglia-lb-1556610415.us-west-1.elb.amazonaws.com'; // http://localhost:3003 or proxy address
+    this.address = 'http://localhost:3003'; // http://localhost:3003 or proxy address
     this.userIndex = 1;
     this.zip = 94110;
   }

@@ -1,4 +1,3 @@
-const User = require('../../database/User.js');
 const pg = require('../../updated-dbs/postgres/pgconnect.js');
 
 module.exports = {

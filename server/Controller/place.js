@@ -1,10 +1,10 @@
-const Place = require('../../database/Place.js');
 const pg = require('../../updated-dbs/postgres/pgconnect.js');
 const redis = require('redis');
 const config = require('../../psqlConfig.js');
 
-const client = redis.createClient(6379, config.redisIP);
-client.on('error', err => console.log('Error: ' + err));
+const client = redis.createClient(6379);
+// const client = redis.createClient(6379, config.redisIP); --> for cloud
+client.on('error', (err) => console.log('Error: ' + err));
 
 module.exports = {
   get: (req, res) => {
