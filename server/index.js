@@ -3,15 +3,16 @@ const newrelic = require('newrelic');
 const path = require('path');
 const axios = require('axios');
 const compression = require('compression');
-const port = 3003;
-const PlaceController = require('./Controller/place.js');
-const UserController = require('./Controller/user.js');
 const parser = require('body-parser');
 const cors = require('cors');
+const PlaceController = require('./Controller/place.js');
+const UserController = require('./Controller/user.js');
+
+const port = 3003;
 const app = express();
 
 // static files
-app.use(express.static(path.join(__dirname,'..','client','dist')));
+app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 app.use(compression());
 
 // init parser

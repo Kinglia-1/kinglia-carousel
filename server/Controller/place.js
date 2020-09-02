@@ -13,18 +13,18 @@ module.exports = {
       if (data) {
         res.status(200).send(data);
       } else {
-        let text = `SELECT placeid, title, pictureurl, zipcode, roomtype, numberbeds, rating, numberreviews, hostplus, superhost, price, placeurl FROM places WHERE zipcode = '${req.params.zip}' LIMIT 12;`;
+        const text = `SELECT placeid, title, pictureurl, zipcode, roomtype, numberbeds, rating, numberreviews, hostplus, superhost, price, placeurl FROM places WHERE zipcode = '${req.params.zip}' LIMIT 12;`;
 
         pg.query(text)
-        .then((data) => {
-          client.setex(zip, 7200, JSON.stringify(data.rows));
-          res.status(200).send(data.rows);
-        })
-        .catch((err) => {
-          console.log('error in Places GET: ' + err);
-          res.sendStatus(400);
-        });
+          .then((data) => {
+            client.setex(zip, 7200, JSON.stringify(data.rows));
+            res.status(200).send(data.rows);
+          })
+          .catch((err) => {
+            console.log('Error in Places GET: ' + err);
+            res.sendStatus(400);
+          });
       }
-    })
-  }
+    });
+  },
 };
