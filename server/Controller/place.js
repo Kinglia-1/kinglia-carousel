@@ -30,15 +30,17 @@ module.exports = {
 };
 
 // without redis
-// get: (req, res) => {
-//   let text = `SELECT placeid, title, pictureurl, zipcode, roomtype, numberbeds, rating, numberreviews, hostplus, superhost, price, placeurl FROM places WHERE zipcode = '${req.params.zip}' LIMIT 12;`;
+// module.export = {
+//   get: (req, res) => {
+//     let text = `SELECT placeid, title, pictureurl, zipcode, roomtype, numberbeds, rating, numberreviews, hostplus, superhost, price, placeurl FROM places WHERE zipcode = '${req.params.zip}' LIMIT 12;`;
 
-//   pg.query(text)
-//   .then((data) => {
-//     res.status(200).send(data.rows);
-//   })
-//   .catch((err) => {
-//     console.log('error in Places GET: ' + err);
-//     res.sendStatus(400);
-//   });
-// }
+//     pg.query(text)
+//     .then((data) => {
+//       res.status(200).send(data.rows);
+//     })
+//     .catch((err) => {
+//       console.log('error in Places GET: ' + err);
+//       res.sendStatus(400);
+//     });
+//   }
+// };
