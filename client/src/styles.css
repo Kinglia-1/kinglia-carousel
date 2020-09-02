@@ -1,38 +1,33 @@
 * {
   box-sizing: border-box;
 }
-
-a { text-decoration: none; }
-
-.carouselwrap{
+a {
+  text-decoration: none;
+}
+.carouselwrap {
   background-color: #F7F7F7;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
-
-div.wrapper{
+div.wrapper {
   margin-left: auto;
   margin-right: auto;
   width:100%;
   height: 100%;
   max-width: 1120px;
   padding-top: 48px;
-
 }
-
- div.outline{
+div.outline {
   width:100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-bottom: 24px;
 }
-
-div.moreplacetostay{
+div.moreplacetostay {
   position: relative;
   margin-left:10px;
 }
-
 p.header{
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -42,14 +37,12 @@ p.header{
   margin-top: 0px;
   margin-bottom: 0px;
 }
-
-.topBarPageContainer{
+.topBarPageContainer {
   align-items: center;
   display: flex;
   white-space: nowrap;
 }
-
-div.topBar{
+div.topBar {
   color: rgb(34, 34, 34);
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -57,13 +50,12 @@ div.topBar{
   line-height: 18px;
   margin-right: 16px;
 }
-.topBarLeftButton{
+.topBarLeftButton {
   margin-right: 6px;
 }
-.topBarRightButton{
+.topBarRightButton {
   margin-left: 6px;
 }
-
 .topBarButton {
   display: inline-flex;
   color: rgb(34, 34, 34);
@@ -85,25 +77,21 @@ div.topBar{
   transition: box-shadow 0.2s ease 0s, -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s;
   margin-right:6px;
 }
-.topBarButton:hover{
+.topBarButton:hover {
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.20);
 }
-.topBarButton:active{
+.topBarButton:active {
   box-shadow: 0px 0px 0px 1px transparent;
 }
-
-
 div.row {
   width: 100%;
 }
-
-div.row__inner{
+div.row__inner {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-
-.listul{
+.listul {
   display: flex;
   height: 100%;
   overflow-x: auto;
@@ -122,8 +110,7 @@ div.row__inner{
   width: 0px;  /* Remove scrollbar space */
   background: transparent;  /* Optional: just make scrollbar invisible */
 }
-
-.listli{
+.listli {
   display: list-item;
   border-width: 0px 10px;
   border-style: solid;
@@ -133,36 +120,28 @@ div.row__inner{
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
-
-
-div.container:hover .heartbutton{
+div.container:hover .heartbutton {
   opacity: 1;
 }
 
-
-
-
 /* container for each list (place) item */
 
-div.container{
+div.container {
   position: relative;
   width: 100%;
   height: auto;
 }
-
-.flexbox_container{
+.flexbox_container {
  display: flex;
  justify-content: center;
  align-items: center;
 }
-
-.placeimg{
+.placeimg {
   border-radius: 2%;
   max-width:100%;
   max-height:100%;
 }
-
-.imgsrc{
+.imgsrc {
   display: block;
   position: absolute;
   top: 0;
@@ -170,11 +149,9 @@ div.container{
   height: 100%;
   width: 100%
 }
-
-.heartTextFix{
+.heartTextFix {
   transform:translateY(0.5px);
 }
-
 .heartbutton {
   position: absolute;
   top: 5%;
@@ -191,7 +168,6 @@ div.container{
   transition: background-color 0.25s ease 0s, -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s;
   outline:0;
 }
-
 .heartNoLike {
   fill: none;
   stroke: rgb(34, 34, 34);
@@ -199,28 +175,23 @@ div.container{
   height: 16px;
   width: 16px;
 }
-
 .heartYesLike {
   fill: rgb(255, 56, 92);
   stroke-width: 2;
   height: 16px;
   width: 16px;
 }
-
-.heartbutton:hover{
+.heartbutton:hover {
   background-color:rgba(255, 255, 255, 1);
   transform: scale(1.1);
   outline:0;
 }
-
-.heartbutton:active{
+.heartbutton:active {
   background-color: rgba(255, 255, 255, 0.75);
   transform: scale(1.1);
   outline:0;
 }
-
-
-.firstlinetext{
+.firstlinetext {
   display: inline-flex;
   width: 100%;
   align-items: center;
@@ -230,10 +201,8 @@ div.container{
   line-height: 18px;
   margin-top:12px;
   margin-bottom: 6px;
-
 }
-
-.superhost{
+.superhost {
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
@@ -250,8 +219,7 @@ div.container{
   padding: 1px 5px 1px 5px;
   margin-right: 6px;
 }
-
-.placetype{
+.placetype {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color: rgb(113, 113, 113);
@@ -266,13 +234,11 @@ div.container{
   visibility: visible;
   flex: 1 1 0%;
 }
-
-.placedot{
+.placedot {
   margin-left:2px;
   margin-right:2px;
 }
-
-.placetext{
+.placetext {
   visibility: visible;
   font-family: 'Roboto', sans-serif;
   font-weight:400;
@@ -286,16 +252,14 @@ div.container{
   opacity: 1;
   visibility: visible;
 }
-
-.star{
+.star {
   color: #FF385C;
   font-size: 12px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   padding-bottom: 100px;
 }
-
-.placerating{
+.placerating {
   display: inline-block;
   text-align: center;
   font-family: 'Roboto', sans-serif;
@@ -304,32 +268,27 @@ div.container{
   padding-left: 4px;
   font-size:14px;
 }
-
-.placepricediv{
+.placepricediv {
   margin-top:4px;
 }
-
-.placeprice{
+.placeprice {
   font-family: 'Roboto', sans-serif;
   font-weight: 800;
   margin-top: 4px;
 }
-
-.likeformwrapperopen{
+.likeformwrapperopen {
   display: block;
 }
-.likeformwrapperclose{
+.likeformwrapperclose {
   display: none;
 }
-
-.enableyscroller{
+.enableyscroller {
   display: scroll;
 }
-.disableyscroller{
+.disableyscroller {
   overflow-y: hidden;
 }
-
-.popupfirst{
+.popupfirst {
   position: fixed;
   z-index: 2000;
   left: 0;
@@ -339,8 +298,7 @@ div.container{
   overflow: auto;
   background-color: rgba(0,0,0,0.4);
 }
-
-.popupsecond{
+.popupsecond {
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -349,24 +307,20 @@ div.container{
   max-width: 568px;
   overflow: visible;
 }
-
-.popupthird{
+.popupthird {
   background-color: rgb(255,255,255);
   padding: 32px;
   z-index: 4000;
 }
-
-.popupx{
+.popupx {
   margin-bottom: 24px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
-
-.popupsavetoalist{
+.popupsavetoalist {
   padding-bottom: 24px
 }
-
-.popupsavetoalisth1{
+.popupsavetoalisth1 {
   display: block;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -375,13 +329,11 @@ div.container{
   font-size: 24;
   margin: 0px;
 }
-
-.scrollerforlikelist{
+.scrollerforlikelist {
   overflow-y: scroll;
   height: 50vh;
 }
-
-.CreateNewListDiv{
+.CreateNewListDiv {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   color: rgb(0, 132, 137);
@@ -390,21 +342,18 @@ div.container{
   display: inline-block;
   cursor: pointer;
 }
-.CreateNewList:hover{
+.CreateNewList:hover {
   text-decoration: underline;
   font-size: 16;
 }
-
-.inbetweenlistdiv{
+.inbetweenlistdiv {
   margin-top: 8px;
   margin-bottom: 8px;
 }
-
-.inbetweenlist{
+.inbetweenlist {
   border: 1px solid rgba(235,235,235,0.7);
 }
-
-.containerlikelist{
+.containerlikelist {
   display:flex;
   justify-content: space-between;
   font-family: 'Roboto', sans-serif;
@@ -413,11 +362,9 @@ div.container{
   padding-top:16px;
   padding-bottom:16px;
 }
-
-.heartInList{
+.heartInList {
   transform:translateY(0.5px);
 }
-
 .heartNoLikeinlist {
   fill: none;
   stroke: rgb(34, 34, 34);
@@ -425,32 +372,27 @@ div.container{
   height: 24px;
   width: 24px;
 }
-
 .heartYesLikeinlist {
   fill: rgb(255, 56, 92);
   stroke-width: 2;
   height: 24px;
   width: 24px;
 }
-
-.likelistformdivfirst{
+.likelistformdivfirst {
   padding-top: 8px;
   padding-bottom: 8px;
 }
-
-.likelistformName{
+.likelistformName {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 16px;
   color: rgba(72,72,72, 0.9);
   margin-bottom: 8px;
 }
-
-.likelistforminputdiv{
+.likelistforminputdiv {
   width: 100%
 }
-
-.likelistforminput{
+.likelistforminput {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   padding: 11px;
@@ -461,27 +403,23 @@ div.container{
   outline:none;
   color: #484848;
   border-radius:5px;
-
 }
-.likelistforminput:focus{
+.likelistforminput:focus {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color:rgba(72,72,72, 0.9);
   border: 1px solid rgb(0, 132, 137);
   border-radius:5px;
 }
-
-.likelistformbuttondiv{
+.likelistformbuttondiv {
   margin-top:16px;
   text-align: right;
 }
-
-.likelistformbuttoncanceldiv{
+.likelistformbuttoncanceldiv {
   display: inline-block;
   margin-right: 12px;
 }
-
-.likelistformbuttoncancel{
+.likelistformbuttoncancel {
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -505,8 +443,7 @@ div.container{
   background: transparent;
   outline:0;
 }
-
-.likelistformbuttonsubmit{
+.likelistformbuttonsubmit {
   cursor: pointer;
   display: inline-block;
   position: relative;
