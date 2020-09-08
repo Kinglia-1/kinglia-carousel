@@ -4,10 +4,12 @@ const userLists = require('./pgUserLists.js');
 const likes = require('./pgUserListsLikes.js');
 const ctrl = require('../control.js');
 
-const totalPlaces = ctrl.totalPlaces;
-const totalUsers = ctrl.totalUsers;
-const totalLists = ctrl.totalLists;
-const totalLikes = ctrl.totalLikes;
+const {
+  totalPlaces,
+  totalUsers,
+  totalLists,
+  totalLikes,
+} = ctrl;
 
 const seedData = () => {
   places.generateFiles(totalPlaces);

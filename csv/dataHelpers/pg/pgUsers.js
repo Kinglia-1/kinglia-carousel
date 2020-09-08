@@ -5,24 +5,24 @@ const faker = require('faker');
 
 const dataGen = (fileName, counterStart, numRecords, last) => {
   const writer = csvWriter();
-  var counter = counterStart;
+  let counter = counterStart;
   numRecords = last ? numRecords + 1 : numRecords;
   writer.pipe(fs.createWriteStream(path.join(__dirname, '..', '..', 'data', 'pg', 'users', `${fileName}`)));
-  for (var i = 0; i < numRecords; i++) {
+  for (let i = 0; i < numRecords; i++) {
     writer.write({
       userId: counter++,
       userName: faker.internet.userName(),
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      email: faker.internet.email()
+      email: faker.internet.email(),
     });
   }
   writer.end();
   console.log(`${fileName}: done`);
 };
 
-var generateFiles = (records) => {
-  var recordsPerFile = Math.floor(records/3);
+const generateFiles = (records) => {
+  const recordsPerFile = Math.floor(records / 3);
   const file1Start = 1;
   const file2Start = file1Start + recordsPerFile;
   const file3Start = file2Start + recordsPerFile;
