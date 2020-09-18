@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 import Carousel from './Carousel.jsx';
 import TopBar from './TopBar.jsx';
 import LikeForm from './LikeForm.jsx';
