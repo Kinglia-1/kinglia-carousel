@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Place from './Place.jsx';
 import styles from './styles.css';
 

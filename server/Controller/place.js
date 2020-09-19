@@ -1,6 +1,7 @@
-const pg = require('../../updated-dbs/postgres/pgconnect.js');
 const redis = require('redis');
-const config = require('../../psqlConfig.js');
+
+const pg = require('../../updated-dbs/postgres/pgconnect.js');
+// const config = require('../../psqlConfig.js');
 
 const client = redis.createClient(6379);
 // const client = redis.createClient(6379, config.redisIP); --> for cloud
