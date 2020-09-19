@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+
 const pgConfig = require('../../psqlConfig.js');
 
 const client = new Pool({
